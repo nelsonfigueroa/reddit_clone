@@ -1,3 +1,3 @@
 Rails.application.routes.draw do
-  root 'guests#index'
+  root 'subs#landing_page'
 end

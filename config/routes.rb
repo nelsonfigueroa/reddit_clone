@@ -1,3 +1,5 @@
 Rails.application.routes.draw do
-  root 'subs#landing_page'
+  root 'home#index'
+
+  devise_for :users
 end

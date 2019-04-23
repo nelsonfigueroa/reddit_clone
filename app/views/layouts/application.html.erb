@@ -14,11 +14,11 @@
   </head>
 
   <body>
-    <% unless notice.blank? %>
+    <% if notice %>
       <p class="notice"><%= notice %></p>
     <% end %>
 
-    <% unless alert.blank? %>
+    <% if alert %>
       <p class="alert"><%= alert %></p>
     <% end %>
     

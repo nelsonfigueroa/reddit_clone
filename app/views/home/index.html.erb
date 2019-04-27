@@ -1,17 +1,25 @@
 <div class="container">
   <div class="alert alert-secondary" role="alert">
-    <h3>Welcome to Shreddit, the censorship-free Reddit</h3>
-    <hr>
-    <p>Feel free to sign up.</p>
+    <h1 class="display-4">Welcome to Shreddit</h1>
+    <p class="lead">Post what you want. No censorship, ever.</p>
   </div>
   <p>"View this project on GitHub" link</p>
   <p>"Technology Stack" link</p>
   <p>Show top posts here. Post title, post content, user, and the sub it is located in</p>
 
-  <p>All Posts</p>
+  <h2>Top Posts</h2>
   <hr>
-  <% @posts.each do |post| %>
-    <p>Post Title: <%= post.title %></p>
-    <p>Post Content: <%= post.content %></p>
-  <% end %>
+  <div class="card-columns">
+    <% @posts.each do |post| %>
+      <div class="card border-dark">
+        <div class="card-header">
+          <strong><%= post.title %></strong>
+        </div>
+        <div class="card-body">
+          <h6 class="card-subtitle mb-2 text-muted">By <%= post.user.username %> in <%= post.sub.name %></h6>
+          <p class="card-text"><%= post.content %></p>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>

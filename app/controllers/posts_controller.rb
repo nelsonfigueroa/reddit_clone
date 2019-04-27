@@ -4,9 +4,9 @@ class PostsController < ApplicationController
 
   # end
 
-  # def show
-
-  # end
+  def show
+    # show post, along with comments
+  end
 
   def new
     if user_signed_in?

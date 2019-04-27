@@ -3,23 +3,33 @@
   <p>You are the sub owner! You can do whatever.</p>
 <% end %>
 
-<h1><%= @sub.name %></h1>
-<h2><%= @sub.description %></h2>
-<h3>Owner: <%= @sub.user.username %></h3>
-
-<br>
-<% if @sub.posts.empty? %>
-  <p>There are no posts! Be the first to create one :)</p>
-<% else %>
-  <% @sub.posts.each do |post| %>
-    <p>TITLE: <%= post.title %><p>
-    <p>CONTENT: <%= post.content %></p>
-  <% end %>
-<% end %>
+<h1 class="display-4"><%= @sub.name %></h1>
+<p class="lead"><%= @sub.description %></p>
+<p>Owner: <%= @sub.user.username %></p>
 
 <% if user_signed_in? %>
   <%= link_to 'New Post', new_sub_post_path(@sub), class: 'btn btn-primary' %>
 <% else %>
   <button type="button" class="btn btn-primary" disabled>Log in to create a post</button>
 <% end %>
+<br><br>
+
+<% if @sub.posts.empty? %>
+  <p>There are no posts! Be the first to create one :)</p>
+<% else %>
+  <div class="card-columns">
+    <% @sub.posts.each do |post| %>
+      <div class="card border-dark">
+        <div class="card-header">
+          <strong><%= post.title %></strong>
+        </div>
+        <div class="card-body">
+          <h6 class="card-subtitle mb-2 text-muted">By <%= post.user.username %></h6>
+          <p class="card-text"><%= post.content %></p>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+
 </div>

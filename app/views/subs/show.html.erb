@@ -17,17 +17,16 @@
 <% if @sub.posts.empty? %>
   <p>There are no posts! Be the first to create one :)</p>
 <% else %>
-  <div class="card-columns">
+  <div class="list-group">
     <% @sub.posts.each do |post| %>
-      <div class="card border-dark">
-        <div class="card-header">
-          <strong><%= link_to "#{post.title}", sub_post_path(sub_id: post.sub, id: post) %></strong>
+      <%= link_to sub_post_path(sub_id: post.sub, id: post), class: 'list-group-item list-group-item-action' do %>
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1"><%= post.title %></h5>
+          <small class="text-muted"><%= post.created_at %></small>
         </div>
-        <div class="card-body">
-          <h6 class="card-subtitle mb-2 text-muted">By <%= post.user.username %></h6>
-          <p class="card-text"><%= post.content %></p>
-        </div>
-      </div>
+        <p class="mb-1"><%= post.content %></p>
+        <small class="text-muted">by <%= post.user.username %> in <%= post.sub.name %></small>
+      <% end %>
     <% end %>
   </div>
 <% end %>

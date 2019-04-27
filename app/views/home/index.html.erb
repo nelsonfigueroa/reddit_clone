@@ -1,6 +1,6 @@
 <div class="container">
   <div class="alert alert-secondary" role="alert">
-    <h1 class="display-4">Welcome to Shreddit</h1>
+    <h1 class="display-4">Welcome to Reddit 2</h1>
     <p class="lead">Post what you want. No censorship, ever.</p>
   </div>
 
@@ -14,7 +14,7 @@
           <h5 class="mb-1"><%= post.title %></h5>
           <small class="text-muted"><%= post.created_at %></small>
         </div>
-        <p class="mb-1"><%= post.content %></p>
+        <p class="mb-1"><%= post.content.truncate(125) %></p>
         <small class="text-muted">by <%= post.user.username %> in <%= post.sub.name %></small>
       <% end %>
     <% end %>

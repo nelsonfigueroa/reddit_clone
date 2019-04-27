@@ -13,7 +13,7 @@
     <% @posts.each do |post| %>
       <div class="card border-dark">
         <div class="card-header">
-          <strong><%= post.title %></strong>
+          <strong><%= link_to "#{post.title}", sub_post_path(sub_id: post.sub, id: post) %></strong>
         </div>
         <div class="card-body">
           <h6 class="card-subtitle mb-2 text-muted">By <%= post.user.username %> in <%= post.sub.name %></h6>

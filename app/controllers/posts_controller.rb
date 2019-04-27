@@ -5,7 +5,7 @@ class PostsController < ApplicationController
   # end
 
   def show
-    # show post, along with comments
+    @post = Post.find_by_id(params[:id])
   end
 
   def new

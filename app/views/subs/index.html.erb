@@ -1,1 +1,14 @@
-<%# for browsing subs %>
+<div class="container">
+
+  <% if user_signed_in? %>
+    <%= link_to 'New Sub', new_sub_path, :class => 'btn btn-lg btn-primary' %>
+  <% end %>
+
+  <% unless @subs.empty? %>
+    <% @subs.each do |sub| %>
+      <p><%= sub.name %></p>
+    <% end %>
+  <% else %>
+    <p>omg no subs</p>
+  <% end %>
+</div>

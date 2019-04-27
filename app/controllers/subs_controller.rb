@@ -9,7 +9,11 @@ class SubsController < ApplicationController
   end
 
   def new
-    @sub = Sub.new
+    if user_signed_in?
+      @sub = Sub.new
+    else
+      redirect_to(root_path)
+    end
   end
 
   def create

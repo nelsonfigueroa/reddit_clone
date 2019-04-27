@@ -4,5 +4,14 @@
     <hr>
     <p>Feel free to sign up.</p>
   </div>
+  <p>"View this project on GitHub" link</p>
+  <p>"Technology Stack" link</p>
   <p>Show top posts here. Post title, post content, user, and the sub it is located in</p>
+
+  <p>All Posts</p>
+  <hr>
+  <% @posts.each do |post| %>
+    <p>Post Title: <%= post.title %></p>
+    <p>Post Content: <%= post.content %></p>
+  <% end %>
 </div>

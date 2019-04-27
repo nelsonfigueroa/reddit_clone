@@ -4,6 +4,6 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :subs do
-    resources :posts
+    resources :posts, only: [ :new , :create ]
   end
 end

@@ -2,11 +2,11 @@
   <h1>Create a new sub</h1>
   <%= form_for @sub, html: {class: "nifty_form"} do |f| %>
     <div class="form-group">
-    <%= label_tag(:name, "Sub Name:") %>
+    <%= f.label :name, 'Sub Name' %>
     <%= f.text_field :name, class: 'form-control' %>
     </div>
     <div class="form-group">
-    <%= label_tag(:description, "A concise description of what your sub will be about:") %>
+    <%= f.label :description, 'What\'s your sub about?' %>
     <%= f.text_field :description, class: 'form-control' %>
     </div>
     <%= f.submit "Create", class: 'btn btn-primary' %>

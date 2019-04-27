@@ -1,0 +1,9 @@
+<div class="container">
+<% if user_signed_in? && current_user.id == @sub.id %>
+  <p>You are the sub owner! You can do whatever.</p>
+<% end %>
+
+<h1><%= @sub.name %></h1>
+<h2><%= @sub.description %></h2>
+<h3>Owner: <%= @sub.user.username %>
+</div>

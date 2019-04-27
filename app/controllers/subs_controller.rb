@@ -5,7 +5,7 @@ class SubsController < ApplicationController
   end
 
   def show
-
+    @sub = Sub.find_by_id(params[:id])
   end
 
   def new
@@ -15,6 +15,7 @@ class SubsController < ApplicationController
   def create
     @sub = Sub.new(sub_params)
     @sub.user_id = current_user.id # move this to view or keep here for security?
+
     if @sub.save
       redirect_to(subs_path)
     else
@@ -27,7 +28,7 @@ class SubsController < ApplicationController
 
   # Used when creating new shops
   def sub_params
-    params.require(:sub).permit(:name, :user_id)
+    params.require(:sub).permit(:name, :description, :user_id)
   end
 
 end

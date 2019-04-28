@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   has_many :subs
   has_many :posts
+  has_many :upvotes
 
   validates :email, :username, presence: true, uniqueness: true
 

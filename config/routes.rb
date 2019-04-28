@@ -6,4 +6,6 @@ Rails.application.routes.draw do
   resources :subs do
     resources :posts, only: [ :show, :new, :create ]
   end
+
+  resources :upvotes, only: [ :create ]
 end

@@ -10,6 +10,21 @@
     </div>
   </div>
 
+  <% if user_signed_in? %>
+    <% if current_user.upvotes.where(:post_id => @post.id).exists? %>
+      <button type="button" class="btn btn-primary" disabled>Upvoted! This should allow for un-upvoting next.</button>
+    <% else %>
+      <%= form_for Upvote.new do |f| %>
+        <%= f.hidden_field :user_id, :value => current_user.id %>
+        <%= f.hidden_field :post_id, :value => @post.id %>
+        <%= f.submit "Upvote", class: 'btn btn-primary' %>
+      <% end %>
+    <% end %>
+  <% else %>
+    <button type="button" class="btn btn-primary" disabled>Log in to upvote!</button>
+  <% end %>
+
   <p>And then comments will go here!</p>
+</div>
 
 </div>

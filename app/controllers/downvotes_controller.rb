@@ -1,16 +1,16 @@
-class UpvotesController < ApplicationController
+class DownvotesController < ApplicationController
 
   def create
-    @upvote = Upvote.new(upvote_params)
-    @upvote.save
+    @downvote = Downvote.new(downvote_params)
+    @downvote.save
 
     # instead of redirecting, do AJAX in the future.
     redirect_back(fallback_location: :back)
   end
 
   def destroy
-    @upvote = Upvote.find_by_id(params[:id])
-    @upvote.destroy
+    @downvote = Downvote.find_by_id(params[:id])
+    @downvote.destroy
 
     # instead of redirecting, do AJAX in the future.
     redirect_back(fallback_location: :back)
@@ -19,8 +19,8 @@ class UpvotesController < ApplicationController
   private
 
   # Used when creating new shops
-  def upvote_params
-    params.require(:upvote).permit(:user_id, :post_id)
+  def downvote_params
+    params.require(:downvote).permit(:user_id, :post_id)
   end
 
 end

@@ -10,18 +10,42 @@
     </div>
   </div>
 
-  <% if user_signed_in? %>
+  <%# show upvote button %>
+  <% if user_signed_in?%>
     <% if current_user.upvotes.where(:post_id => @post.id).exists? %>
-      <button type="button" class="btn btn-primary" disabled>Upvoted! This should allow for un-upvoting next.</button>
+      <%= form_for current_user.upvotes.where(:post_id => @post.id).first, method: :delete do |f| %>
+        <%= f.hidden_field :user_id, :value => current_user.id %>
+        <%= f.hidden_field :post_id, :value => @post.id %>
+        <%= f.submit "Remove Upvote", class: 'btn btn-primary' %>
+      <% end %>
     <% else %>
       <%= form_for Upvote.new do |f| %>
         <%= f.hidden_field :user_id, :value => current_user.id %>
         <%= f.hidden_field :post_id, :value => @post.id %>
-        <%= f.submit "Upvote", class: 'btn btn-primary' %>
+        <%= f.submit "Upvote", class: 'btn btn-secondary' %>
       <% end %>
     <% end %>
   <% else %>
     <button type="button" class="btn btn-primary" disabled>Log in to upvote!</button>
+  <% end %>
+
+  <%# show downvote button %>
+  <% if user_signed_in?%>
+    <% if current_user.downvotes.where(:post_id => @post.id).exists? %>
+      <%= form_for current_user.downvotes.where(:post_id => @post.id).first, method: :delete do |f| %>
+        <%= f.hidden_field :user_id, :value => current_user.id %>
+        <%= f.hidden_field :post_id, :value => @post.id %>
+        <%= f.submit "Remove Downvote", class: 'btn btn-danger' %>
+      <% end %>
+    <% else %>
+      <%= form_for Downvote.new do |f| %>
+        <%= f.hidden_field :user_id, :value => current_user.id %>
+        <%= f.hidden_field :post_id, :value => @post.id %>
+        <%= f.submit "Downvote", class: 'btn btn-secondary' %>
+      <% end %>
+    <% end %>
+  <% else %>
+    <button type="button" class="btn btn-primary" disabled>Log in to downvote!</button>
   <% end %>
 
   <p>And then comments will go here!</p>

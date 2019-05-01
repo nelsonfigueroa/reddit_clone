@@ -24,7 +24,6 @@
           <h5 class="mb-1"><%= post.title %></h5>
           <small class="text-muted"><%= post.created_at.localtime.strftime("%l:%M%p %m/%d/%Y") %></small>
         </div>
-        <hr>
         <p class="mb-1"><%= post.content.truncate(125) %></p>
         <small class="text-muted">by <%= post.user.username %> in <%= post.sub.name %> | Votes: <%= post.net_votes %></small>
       <% end %>

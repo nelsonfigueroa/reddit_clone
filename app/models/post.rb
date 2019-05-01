@@ -6,8 +6,7 @@ class Post < ApplicationRecord
 
   validates :title, :content, presence: true
 
-  # scope for top posts where net_votes descending
-  # something like .sort_by {|self| self.net_votes}
+  default_scope { order(created_at: :desc) }
 
   def net_votes
     self.upvotes.size - self.downvotes.size

@@ -5,4 +5,8 @@ class Post < ApplicationRecord
   has_many :downvotes
 
   validates :title, :content, presence: true
+
+  def net_votes
+    self.upvotes.size - self.downvotes.size
+  end
 end

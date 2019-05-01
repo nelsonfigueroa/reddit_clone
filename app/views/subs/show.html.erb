@@ -19,7 +19,7 @@
 <% else %>
   <div class="list-group">
     <% @sub.posts.each do |post| %>
-      <%= link_to sub_post_path(sub_id: post.sub, id: post), class: 'list-group-item list-group-item-action' do %>
+      <%= link_to sub_post_path(sub_id: post.sub, id: post), class: 'list-group-item list-group-item-action bg-light' do %>
         <div class="d-flex w-100 justify-content-between">
           <h5 class="mb-1"><%= post.title %></h5>
           <small class="text-muted"><%= post.created_at %></small>

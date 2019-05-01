@@ -1,11 +1,11 @@
 <div class="container">
-<% if user_signed_in? && current_user.id == @sub.id %>
+<% if user_signed_in? && current_user.id == @sub.user_id %>
   <p>You are the sub owner! You can do whatever.</p>
 <% end %>
 
-<h1 class="display-4"><%= @sub.name %></h1>
+<h1><%= @sub.name %></h1>
 <p class="lead"><%= @sub.description %></p>
-<p>Owner: <%= @sub.user.username %></p>
+<p class="text-muted">Owner: <%= @sub.user.username %></p>
 
 <% if user_signed_in? %>
   <%= link_to 'New Post', new_sub_post_path(@sub), class: 'btn btn-primary' %>
@@ -24,6 +24,7 @@
           <h5 class="mb-1"><%= post.title %></h5>
           <small class="text-muted"><%= post.created_at.localtime.strftime("%l:%M%p %m/%d/%Y") %></small>
         </div>
+        <hr>
         <p class="mb-1"><%= post.content.truncate(125) %></p>
         <small class="text-muted">by <%= post.user.username %> in <%= post.sub.name %> | Votes: <%= post.net_votes %></small>
       <% end %>

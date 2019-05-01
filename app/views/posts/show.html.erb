@@ -1,5 +1,5 @@
 <div class="container">
-  <h1 class="display-4"><%= @post.sub.name %></h1>
+  <h1><%= @post.sub.name %></h1>
   <p class="lead"><%= @post.sub.description %></p>
 
   <div class="card bg-light">
@@ -26,7 +26,7 @@
         <%= form_for current_user.upvotes.where(:post_id => @post.id).first, method: :delete do |f| %>
           <%= f.hidden_field :user_id, :value => current_user.id %>
           <%= f.hidden_field :post_id, :value => @post.id %>
-          <%= f.submit "Remove Upvote", class: 'btn btn-primary btn-block' %>
+          <%= f.submit "Upvoted!", class: 'btn btn-primary btn-block' %>
         <% end %>
       <% else %>
         <%= form_for Upvote.new do |f| %>
@@ -47,7 +47,7 @@
         <%= form_for current_user.downvotes.where(:post_id => @post.id).first, method: :delete do |f| %>
           <%= f.hidden_field :user_id, :value => current_user.id %>
           <%= f.hidden_field :post_id, :value => @post.id %>
-          <%= f.submit "Remove Downvote", class: 'btn btn-danger btn-block' %>
+          <%= f.submit "Downvoted!", class: 'btn btn-danger btn-block' %>
         <% end %>
       <% else %>
         <%= form_for Downvote.new do |f| %>

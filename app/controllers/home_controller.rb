@@ -6,4 +6,9 @@ class HomeController < ApplicationController
     @posts = Post.all
   end
 
+  # not RESTful
+  def technologies
+    
+  end
+
 end

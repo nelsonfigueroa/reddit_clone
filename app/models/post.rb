@@ -6,6 +6,8 @@ class Post < ApplicationRecord
 
   validates :title, :content, presence: true
 
+  # scope for top posts where net_votes descending
+
   def net_votes
     self.upvotes.size - self.downvotes.size
   end

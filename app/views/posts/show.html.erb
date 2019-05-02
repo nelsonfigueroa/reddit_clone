@@ -11,19 +11,19 @@
     </div>
   </div>
 
+  <%# do this shit. %>
   <%# fix this mess. put stuff in the controller %>
   <%# then apply this to every post in top posts view %>
   <%# and also apply this to subs show view, which is a list of posts for the sub %>
   <%# maybe there's a way to apply this everywhere without repeating in every controller/view %>
   <%# first get it working in each controller then move it elsewhere %>
 
-
   <div class="row">
   <%# show upvote button %>
     <div class="col pr-0">
-    <% if user_signed_in?%>
-      <% if current_user.upvotes.where(:post_id => @post.id).exists? %>
-        <%= form_for current_user.upvotes.where(:post_id => @post.id).first, method: :delete do |f| %>
+    <% if user_signed_in? %>
+      <% if current_user.upvoted_post?(@post) %>
+        <%= form_for @upvote, method: :delete do |f| %>
           <%= f.hidden_field :user_id, :value => current_user.id %>
           <%= f.hidden_field :post_id, :value => @post.id %>
           <%= f.submit "Upvoted!", class: 'btn btn-primary btn-block' %>
@@ -36,15 +36,15 @@
         <% end %>
       <% end %>
     <% else %>
-      <button type="button" class="btn btn-primary" disabled>Log in to upvote!</button>
+      <button type="button" class="btn btn-outline-secondary btn-block" disabled>Log in to upvote!</button>
     <% end %>
     </div>
 
     <%# show downvote button %>
     <div class="col pl-0">
-    <% if user_signed_in?%>
-      <% if current_user.downvotes.where(:post_id => @post.id).exists? %>
-        <%= form_for current_user.downvotes.where(:post_id => @post.id).first, method: :delete do |f| %>
+    <% if user_signed_in? %>
+      <% if current_user.downvoted_post?(@post) %>
+        <%= form_for @downvote, method: :delete do |f| %>
           <%= f.hidden_field :user_id, :value => current_user.id %>
           <%= f.hidden_field :post_id, :value => @post.id %>
           <%= f.submit "Downvoted!", class: 'btn btn-danger btn-block' %>
@@ -57,12 +57,12 @@
         <% end %>
       <% end %>
     <% else %>
-      <button type="button" class="btn btn-primary" disabled>Log in to downvote!</button>
+      <button type="button" class="btn btn-outline-secondary btn-block" disabled>Log in to downvote!</button>
     <% end %>
     </div>
   </div>
 
-  <p>And then comments will go here!</p>
+  <p>Comments will go here some day.</p>
 </div>
 
 </div>

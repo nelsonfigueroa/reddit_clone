@@ -14,4 +14,20 @@ class User < ApplicationRecord
 
   validates :email, :username, presence: true, uniqueness: true
 
+  def upvoted_post?(post)
+    if self.upvotes.where(:post_id => post.id).exists?
+      return true
+    else
+      return false
+    end
+  end
+
+  def downvoted_post?(post)
+    if self.downvotes.where(:post_id => post.id).exists?
+      return true
+    else
+      return false
+    end 
+  end
+
 end

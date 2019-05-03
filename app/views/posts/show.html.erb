@@ -1,7 +1,11 @@
-<div class="container">
-  <h1><%= @post.sub.name %></h1>
-  <p class="lead"><%= @post.sub.description %></p>
+<div class="jumbotron jumbotron-fluid bg-dark text-white py-1">
+  <div class="container">
+    <h1 class="display-4"><%= link_to "#{@post.sub.name}", sub_path(@post.sub), class: 'text-white' %></h1>
+    <p class="lead"><%= @post.sub.description %></p>
+  </div>
+</div>
 
+<div class="container">
   <div class="card bg-light">
     <div class="card-body">
       <h3 class="card-title"><%= @post.title %></h3>

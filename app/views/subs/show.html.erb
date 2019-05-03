@@ -1,11 +1,15 @@
+<div class="jumbotron jumbotron-fluid bg-dark text-white py-1">
+  <div class="container">
+    <h1 class="display-4"><%= link_to "#{@sub.name}", sub_path(@sub), class: 'text-white' %></h1>
+    <p class="lead"><%= @sub.description %></p>
+    <small class="">Owner: <%= @sub.user.username %></small>
+  </div>
+</div>
+
 <div class="container">
 <% if user_signed_in? && current_user.id == @sub.user_id %>
-  <p>You are the sub owner! You can do whatever.</p>
+  <p>You are the sub owner! You will have admin actions in the future :)</p>
 <% end %>
-
-<h1><%= @sub.name %></h1>
-<p class="lead"><%= @sub.description %></p>
-<p class="text-muted">Owner: <%= @sub.user.username %></p>
 
 <% if user_signed_in? %>
   <%= link_to 'New Post', new_sub_post_path(@sub), class: 'btn btn-primary' %>
@@ -26,7 +30,6 @@
       </div>
       <ul class="list-group list-group-flush">
         <li class="list-group-item">
-
           <nav aria-label="Page navigation example">
             <ul class="pagination">
               <li class="page-item"><%= render 'upvote_button', post: post %></li>
@@ -34,7 +37,6 @@
               <li class="page-item"><%= render 'downvote_button', post: post %></li>
             </ul>
           </nav>
-
         </li>
       </ul>
     </div>

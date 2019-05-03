@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="alert alert-secondary" role="alert">
+  <div class="alert alert-secondary text-center mt-4" role="alert">
     <h1 class="display-4">Welcome to Shreddit</h1>
     <p class="lead"><i>No censorship, ever.</i></p>
   </div>
@@ -11,12 +11,11 @@
     <div class="card mb-3">
       <div class="card-body">
         <h4 class="card-title"><%= link_to "#{post.title}", sub_post_path(sub_id: post.sub, id: post), class: 'text-primary' %></h4>
-        <h6 class="card-subtitle mb-2 text-muted">by <%= post.user.username %> in <%= post.sub.name %> at <%= post.created_at_formatted %></h6>
+        <h6 class="card-subtitle mb-2 text-muted">by <%= post.user.username %> in <%= link_to "#{post.sub.name}", sub_path(post.sub) %> at <%= post.created_at_formatted %></h6>
         <p class="card-text"><%= post.content.truncate(125) %></p>
       </div>
       <ul class="list-group list-group-flush">
         <li class="list-group-item">
-
           <nav aria-label="Page navigation example">
             <ul class="pagination">
               <li class="page-item"><%= render 'upvote_button', post: post %></li>
@@ -24,7 +23,6 @@
               <li class="page-item"><%= render 'downvote_button', post: post %></li>
             </ul>
           </nav>
-
         </li>
       </ul>
     </div>

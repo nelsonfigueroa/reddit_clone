@@ -11,4 +11,8 @@ class Post < ApplicationRecord
   def net_votes
     self.upvotes.size - self.downvotes.size
   end
+
+  def created_at_formatted
+    self.created_at.localtime.strftime("%l:%M%p %m/%d/%Y")
+  end
 end

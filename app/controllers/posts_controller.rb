@@ -9,6 +9,9 @@ class PostsController < ApplicationController
     
       # for form, in the event that user has already downvoted
       @downvote = current_user.downvotes.where(:post_id => @post.id).first
+
+      # for comment form
+      @comment = Comment.new
     end
 
   end

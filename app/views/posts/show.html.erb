@@ -59,7 +59,28 @@
     </div>
   </div>
 
-  <p>Comments will go here some day.</p>
-</div>
+  <hr>
+  <% if user_signed_in? %>
+    <%= form_for @comment do |f| %>
+      <div clss="form-group">
+        <%= f.label :comment, 'Write a comment' %>
+        <%= f.text_field :comment, class: 'form-control' %>
+      </div>
+        <%= f.hidden_field :user_id, :value => current_user.id %>
+        <%= f.hidden_field :post_id, :value => @post.id %>
+        <%= f.submit "Post", class: 'btn btn-primary my-1' %>
+    <% end %>
+  <% end %>
+
+  <h3>Comments</h3>
+  <% @post.comments.each do |comment| %>
+    <div class="card my-1">
+      <div class="card-body">
+        <h6 class="card-subtitle mb-2 text-muted"><%= comment.user.username %></h6>
+        <p class="card-text"><%= comment.comment %></p>
+        <p class="card-text"><small class="text-muted"><%= comment.created_at_formatted %></small></p>
+      </div>
+    </div>
+  <% end %>
 
 </div>

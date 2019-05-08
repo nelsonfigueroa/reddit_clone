@@ -18,7 +18,7 @@ class SubsController < ApplicationController
 
   def create
     @sub = Sub.new(sub_params)
-    @sub.user_id = current_user.id # move this to view or keep here for security?
+    @sub.user_id = current_user.id # keep here for security, hidden fields can easily be modified.
 
     if @sub.save
       redirect_to(subs_path)

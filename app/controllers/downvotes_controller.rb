@@ -2,6 +2,7 @@ class DownvotesController < ApplicationController
 
   def create
     @downvote = Downvote.new(downvote_params)
+    @downvote.user_id = current_user.id
 
     # if user previously upvoted post, remove upvote
     @upvote = Upvote.where(user_id: @downvote.user_id, post_id: @downvote.post_id).first

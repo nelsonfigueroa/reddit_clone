@@ -57,7 +57,7 @@
 
   <hr>
   <% if user_signed_in? %>
-    <%= form_for @comment do |f| %>
+    <%= form_with(model: @comment) do |f| %>
       <div clss="form-group">
         <%= f.label :comment, 'Write a comment' %>
         <%= f.text_field :comment, class: 'form-control' %>
@@ -68,6 +68,7 @@
     <% end %>
   <% end %>
 
+  <hr>
   <h3>Comments</h3>
   <% @post.comments.each do |comment| %>
     <div class="card my-1">
@@ -78,5 +79,4 @@
       </div>
     </div>
   <% end %>
-
 </div>

@@ -13,9 +13,9 @@
       <li class="list-group-item">
         <nav aria-label="Page navigation example">
           <ul class="pagination">
-            <li class="page-item"><%= render 'upvote_button', post: post %></li>
+            <li class="page-item"><%= render 'layouts/upvote_button', post: post %></li>
             <li class="page-item"><span class="page-link text-body" disabled><%= post.net_votes %></span></li>
-            <li class="page-item"><%= render 'downvote_button', post: post %></li>
+            <li class="page-item"><%= render 'layouts/downvote_button', post: post %></li>
           </ul>
         </nav>
       </li>

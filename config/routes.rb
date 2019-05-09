@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get 'home/technologies'
 
   devise_for :users
+  resources :users, only: [ :show ]
 
   resources :subs do
     resources :posts, only: [ :show, :new, :create ]

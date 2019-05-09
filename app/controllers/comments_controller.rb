@@ -11,6 +11,7 @@ class CommentsController < ApplicationController
   #   end
   # end
 
+  # maybe its still reloading the page since the page jumps to the top.
   def create
     @comment = Comment.new(comment_params)
    

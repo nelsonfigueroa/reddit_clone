@@ -2,7 +2,7 @@
   <div class="container">
     <h1 class="display-4"><%= link_to "#{@sub.name}", sub_path(@sub), class: 'text-white' %></h1>
     <p class="lead"><%= @sub.description %></p>
-    <small class="">Owner: <%= @sub.user.username %></small>
+    <small class="">Owner: <%= link_to "#{@sub.user.username}", user_path(@sub.user), class:'text-white' %></small>
   </div>
 </div>
 
@@ -25,7 +25,7 @@
     <div class="card mb-3">
       <div class="card-body">
         <h4 class="card-title"><%= link_to "#{post.title}", sub_post_path(sub_id: post.sub, id: post), class: 'text-primary' %></h4>
-        <h6 class="card-subtitle mb-2 text-muted">by <%= post.user.username %> at <%= post.created_at_formatted %></h6>
+        <h6 class="card-subtitle mb-2 text-muted">by <%= link_to "#{post.user.username}", user_path(post.user) %> at <%= post.created_at_formatted %></h6>
         <p class="card-text"><%= post.content.truncate(125) %></p>
       </div>
       <ul class="list-group list-group-flush">

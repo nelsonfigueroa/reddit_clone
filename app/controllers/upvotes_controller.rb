@@ -28,9 +28,9 @@ class UpvotesController < ApplicationController
    
     respond_to do |format|
       if @upvote.save
-        format.html { redirect_back(fallback_location: :back, notice: 'Upvoted!') }
+        format.html { redirect_back(fallback_location: :back) }
         format.json { render json: @upvote, status: :created, location: @upvote }
-        format.js { redirect_back(fallback_location: :back, notice: 'Upvoted!') }
+        format.js { redirect_back(fallback_location: :back) }
       else
         format.html { redirect_back(fallback_location: :back, notice: 'Something went wrong') }
         format.json { render json: @upvote.errors, status: :unprocessable_entity }

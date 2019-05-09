@@ -28,9 +28,9 @@ class DownvotesController < ApplicationController
    
     respond_to do |format|
       if @downvote.save
-        format.html { redirect_back(fallback_location: :back, notice: 'Downvoted!') }
+        format.html { redirect_back(fallback_location: :back) }
         format.json { render json: @downvote, status: :created, location: @downvote }
-        format.js { redirect_back(fallback_location: :back, notice: 'Downvoted!') }
+        format.js { redirect_back(fallback_location: :back) }
       else
         format.html { redirect_back(fallback_location: :back, notice: 'Something went wrong') }
         format.json { render json: @downvote.errors, status: :unprocessable_entity }

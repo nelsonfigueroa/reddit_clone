@@ -1,0 +1,15 @@
+<% if user_signed_in? %>
+  <% if current_user.upvoted_post?(post) %>
+    <%= form_with(model: current_user.upvotes.where(:post_id => post.id).first, method: :delete) do |f| %>
+      <%= f.hidden_field :post_id, :value => post.id %>
+      <%= f.submit '/\\', class: 'page-link bg-primary text-white' %>
+    <% end %>
+  <% else %>
+    <%= form_with(model: Upvote.new) do |f| %>
+      <%= f.hidden_field :post_id, :value => post.id %>
+      <%= f.submit '/\\', class: 'page-link' %>
+    <% end %>
+  <% end %>
+<% else %>
+  <button type="button" class='page-link' disabled>/\</button>
+<% end %>

@@ -20,12 +20,12 @@
     <div class="col pr-0">
     <% if user_signed_in? %>
       <% if current_user.upvoted_post?(@post) %>
-        <%= form_for @upvote, method: :delete do |f| %>
+        <%= form_with(model: @upvote, method: :delete) do |f| %>
           <%= f.hidden_field :post_id, :value => @post.id %>
           <%= f.submit "Upvoted!", class: 'btn btn-primary btn-block' %>
         <% end %>
       <% else %>
-        <%= form_for Upvote.new do |f| %>
+        <%= form_with(model: Upvote.new) do |f| %>
           <%= f.hidden_field :post_id, :value => @post.id %>
           <%= f.submit "Upvote", class: 'btn btn-outline-primary btn-block' %>
         <% end %>
@@ -39,12 +39,12 @@
     <div class="col pl-0">
     <% if user_signed_in? %>
       <% if current_user.downvoted_post?(@post) %>
-        <%= form_for @downvote, method: :delete do |f| %>
+        <%= form_with(model: @downvote, method: :delete) do |f| %>
           <%= f.hidden_field :post_id, :value => @post.id %>
           <%= f.submit "Downvoted!", class: 'btn btn-danger btn-block' %>
         <% end %>
       <% else %>
-        <%= form_for Downvote.new do |f| %>
+        <%= form_with(model: Downvote.new) do |f| %>
           <%= f.hidden_field :post_id, :value => @post.id %>
           <%= f.submit "Downvote", class: 'btn btn-outline-danger btn-block' %>
         <% end %>

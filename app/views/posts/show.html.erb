@@ -6,56 +6,25 @@
 </div>
 
 <div class="container">
-  <div class="card bg-light">
+  <div class="card mb-3">
     <div class="card-body">
-      <h3 class="card-title"><%= @post.title %></h3>
-      <p class="card-subtitle mb-2 text-muted">Posted by <%= link_to "#{@post.user.username}", user_path(@post.user) %></p>
-      <hr>
+      <h4 class="card-title"><%= @post.title %></h4>
+      <h6 class="card-subtitle mb-2 text-muted">by <%= link_to "#{@post.user.username}", user_path(@post.user) %> at <%= @post.created_at_formatted %></h6>
       <p class="card-text"><%= @post.content %></p>
-      <p class="card-text text-muted">Votes: <%= @post.net_votes %></p>
     </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">
+        <nav aria-label="Page navigation example">
+          <ul class="pagination">
+            <li class="page-item"><%= render 'layouts/upvote_button', post: @post %></li>
+            <li class="page-item"><span class="page-link text-body" disabled><%= @post.net_votes %></span></li>
+            <li class="page-item"><%= render 'layouts/downvote_button', post: @post %></li>
+          </ul>
+        </nav>
+      </li>
+    </ul>
   </div>
-
-  <div class="row">
-  <%# show upvote button %>
-    <div class="col pr-0">
-    <% if user_signed_in? %>
-      <% if current_user.upvoted_post?(@post) %>
-        <%= form_with(model: @upvote, method: :delete) do |f| %>
-          <%= f.hidden_field :post_id, :value => @post.id %>
-          <%= f.submit "Upvoted!", class: 'btn btn-primary btn-block' %>
-        <% end %>
-      <% else %>
-        <%= form_with(model: Upvote.new) do |f| %>
-          <%= f.hidden_field :post_id, :value => @post.id %>
-          <%= f.submit "Upvote", class: 'btn btn-outline-primary btn-block' %>
-        <% end %>
-      <% end %>
-    <% else %>
-      <button type="button" class="btn btn-outline-secondary btn-block" disabled>Log in to upvote!</button>
-    <% end %>
-    </div>
-
-    <%# show downvote button %>
-    <div class="col pl-0">
-    <% if user_signed_in? %>
-      <% if current_user.downvoted_post?(@post) %>
-        <%= form_with(model: @downvote, method: :delete) do |f| %>
-          <%= f.hidden_field :post_id, :value => @post.id %>
-          <%= f.submit "Downvoted!", class: 'btn btn-danger btn-block' %>
-        <% end %>
-      <% else %>
-        <%= form_with(model: Downvote.new) do |f| %>
-          <%= f.hidden_field :post_id, :value => @post.id %>
-          <%= f.submit "Downvote", class: 'btn btn-outline-danger btn-block' %>
-        <% end %>
-      <% end %>
-    <% else %>
-      <button type="button" class="btn btn-outline-secondary btn-block" disabled>Log in to downvote!</button>
-    <% end %>
-    </div>
-  </div>
-
+  
   <hr>
   <% if user_signed_in? %>
     <%= form_with(model: @comment) do |f| %>

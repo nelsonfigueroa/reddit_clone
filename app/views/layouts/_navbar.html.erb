@@ -15,6 +15,9 @@
         <li class="nav-item">
         <%= link_to "Sign Out", destroy_user_session_path, :method => :delete, :class => 'nav-link' %>
         </li>
+        <li class="nav-item">
+        <%= link_to "#{current_user.username}", user_path(current_user), :class => 'nav-link text-info float-right' %>
+        </li>
       <% else %>
         <li class="nav-item">
         <%= link_to "Login", new_user_session_path, :class => 'nav-link' %>

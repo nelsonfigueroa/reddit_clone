@@ -6,7 +6,7 @@
 </div>
 
 <div class="container">
-  <div class="card mb-3">
+  <div class="card">
     <div class="card-body">
       <h2 class="card-title"><%= @post.title %></h2>
       <h6 class="card-subtitle mb-2 text-muted">by <%= link_to "#{@post.user.username}", user_path(@post.user) %> at <%= @post.created_at_formatted %></h6>
@@ -30,7 +30,7 @@
     <%= form_with(model: @comment) do |f| %>
       <div clss="form-group">
         <%= f.label :comment, 'Write a comment' %>
-        <%= f.text_field :comment, class: 'form-control' %>
+        <%= f.text_area :comment, class: 'form-control' %>
       </div>
         <%= f.hidden_field :user_id, :value => current_user.id %>
         <%= f.hidden_field :post_id, :value => @post.id %>

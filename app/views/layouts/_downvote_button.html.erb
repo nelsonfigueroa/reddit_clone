@@ -2,12 +2,16 @@
   <% if current_user.downvoted_post?(post) %>
     <%= form_with(model: current_user.downvotes.where(:post_id => post.id).first, method: :delete) do |f| %>
       <%= f.hidden_field :post_id, :value => post.id %>
-      <%= f.submit '\/', class: 'page-link bg-danger text-white' %>
+      <%= button_tag type: 'submit', class: 'page-link bg-danger text-white' do %>
+        <%= inline_svg "downvote.svg", size: '16 * 16' %>
+      <% end %>
     <% end %>
   <% else %>
     <%= form_with(model: Downvote.new) do |f| %>
       <%= f.hidden_field :post_id, :value => post.id %>
-      <%= f.submit '\/', class: 'page-link' %>
+      <%= button_tag type: 'submit', class: 'page-link' do %>
+        <%= inline_svg "downvote.svg", size: '16 * 16' %>
+      <% end %>
     <% end %>
   <% end %>
 <% else %>

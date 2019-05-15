@@ -4,12 +4,6 @@ class PostsController < ApplicationController
     @post = Post.find_by_id(params[:id])
 
     if user_signed_in?
-      # for form, in the event that user has already upvoted
-      @upvote = current_user.upvotes.where(:post_id => @post.id).first
-    
-      # for form, in the event that user has already downvoted
-      @downvote = current_user.downvotes.where(:post_id => @post.id).first
-
       # for comment form
       @comment = Comment.new
     end

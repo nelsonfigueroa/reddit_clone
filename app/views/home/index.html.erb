@@ -9,17 +9,7 @@
         <h6 class="card-subtitle mb-2 text-muted">by <%= link_to "#{post.user.username}", user_path(post.user) %> in <%= link_to "#{post.sub.name}", sub_path(post.sub) %> at <%= post.created_at_formatted %></h6>
         <p class="card-text"><%= post.content.truncate(125) %></p>
       </div>
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item">
-          <nav aria-label="Page navigation example">
-            <ul class="pagination">
-              <li class="page-item"><%= render 'layouts/upvote_button', post: post %></li>
-              <li class="page-item"><span class="page-link text-body" disabled><%= post.net_votes %></span></li>
-              <li class="page-item"><%= render 'layouts/downvote_button', post: post %></li>
-            </ul>
-          </nav>
-        </li>
-      </ul>
+      <%= render 'layouts/vote_buttons', post: post %>
     </div>
   <% end %>
 

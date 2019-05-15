@@ -6,9 +6,9 @@ RUN apk add --no-cache --update postgresql-dev
 RUN apk add --no-cache --update nodejs
 RUN apk add --no-cache --update sqlite-dev
 RUN apk add --no-cache --update tzdata
-RUN mkdir -p /shreddit
+RUN mkdir -p /reddit_clone
 
-WORKDIR /blog
+WORKDIR /reddit_clone
 
 COPY Gemfile Gemfile.lock ./
 

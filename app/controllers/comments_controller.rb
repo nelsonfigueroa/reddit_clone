@@ -19,11 +19,11 @@ class CommentsController < ApplicationController
       if @comment.save
         format.html { redirect_back(fallback_location: :back, notice: 'Comment successfully created!') }
         format.json { render json: @comment, status: :created, location: @comment }
-        format.js { redirect_back(fallback_location: :back, notice: 'Comment Successfully created!') }
+        format.js
       else
         format.html { redirect_back(fallback_location: :back, notice: 'Something went wrong') }
         format.json { render json: @comment.errors, status: :unprocessable_entity }
-        format.js { redirect_back(fallback_location: :back, notice: 'Something went wrong') }
+        format.js
       end
     end
   end

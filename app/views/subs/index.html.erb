@@ -2,7 +2,7 @@
 
   <h1 class="mt-4">Browse Subs</h1>
   <% if user_signed_in? %>
-    <%= link_to 'Create a sub!', new_sub_path, :class => 'btn btn-primary' %>
+    <%= link_to 'Create Sub', new_sub_path, :class => 'btn btn-primary' %>
   <% else %>
     <button type="button" class="btn btn-primary" disabled>Log in to create a sub</button>
   <% end %>

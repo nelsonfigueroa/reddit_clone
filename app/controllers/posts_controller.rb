@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
 
   def show
-    @post = Post.find_by_id(params[:id])
+    @post = Post.includes(comments: [:user]).find_by_id(params[:id])
 
     if user_signed_in?
       # for comment form

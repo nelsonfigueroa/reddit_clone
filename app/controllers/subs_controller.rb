@@ -5,7 +5,7 @@ class SubsController < ApplicationController
   end
 
   def show
-    @sub = Sub.find_by_id(params[:id])
+    @sub = Sub.includes(posts: [:user]).find_by_id(params[:id])
   end
 
   def new

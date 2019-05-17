@@ -1,17 +1,5 @@
 class CommentsController < ApplicationController
 
-  # def create
-  #   @comment = Comment.new(comment_params)
-
-  #   if @comment.save
-  #     redirect_back(fallback_location: :back)
-  #   else
-  #     flash[:notice] = "Invalid input!"
-  #     redirect_back(fallback_location: :back)
-  #   end
-  # end
-
-  # maybe its still reloading the page since the page jumps to the top.
   def create
     @comment = Comment.new(comment_params)
    

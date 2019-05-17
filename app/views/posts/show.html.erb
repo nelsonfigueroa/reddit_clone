@@ -29,7 +29,7 @@
   <% end %>
 
   <hr>
-  <h3>Comments</h3>
+  <h3 id="comments-count"><%= @post.comments.count %> comments <%= inline_svg "comments.svg", size: "28*28" %></p></h3>
   <div id="comments">
     <% @post.comments.each do |comment| %>
       <%= render 'layouts/comment', comment: comment %>

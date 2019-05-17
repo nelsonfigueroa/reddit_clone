@@ -29,7 +29,7 @@
             
           <% elsif current_user.upvoted_post?(post) %>
             <li class="page-item">
-              <%= form_for current_user.votes.where(:post_id => post.id, :upvote => true, :downvote => false).first, method: :delete do |f| %>
+              <%= form_with(model: current_user.votes.where(:post_id => post.id, :upvote => true, :downvote => false).first, method: :delete) do |f| %>
                 <%= f.hidden_field :post_id, :value => post.id %>
                 <%= button_tag type: 'submit', class: 'page-link bg-primary text-white' do %>
                   <%= inline_svg "upvote.svg", size: '16 * 16' %>
@@ -38,7 +38,7 @@
             </li>
             <li class="page-item"><span class="page-link text-body" disabled><%= post.net_votes %></span></li>
             <li class="page-item">
-              <%= form_for current_user.votes.where(:post_id => post.id, :upvote => true, :downvote => false).first, method: :put do |f| %>
+              <%= form_with(model: current_user.votes.where(:post_id => post.id, :upvote => true, :downvote => false).first, method: :put) do |f| %>
                 <%= f.hidden_field :post_id, :value => post.id %>
                 <%= f.hidden_field :upvote, :value => false %>
                 <%= f.hidden_field :downvote, :value => true %>
@@ -50,7 +50,7 @@
 
           <% elsif current_user.downvoted_post?(post) %>
             <li class="page-item">
-              <%= form_for current_user.votes.where(:post_id => post.id, :upvote => false, :downvote => true).first, method: :put do |f| %>
+              <%= form_with(model: current_user.votes.where(:post_id => post.id, :upvote => false, :downvote => true).first, method: :put) do |f| %>
                 <%= f.hidden_field :post_id, :value => post.id %>
                 <%= f.hidden_field :upvote, :value => true %>
                 <%= f.hidden_field :downvote, :value => false %>
@@ -61,7 +61,7 @@
             </li>
             <li class="page-item"><span class="page-link text-body" disabled><%= post.net_votes %></span></li>
             <li class="page-item">
-              <%= form_for current_user.votes.where(:post_id => post.id, :upvote => false, :downvote => true).first, method: :delete do |f| %>
+              <%= form_with(model: current_user.votes.where(:post_id => post.id, :upvote => false, :downvote => true).first, method: :delete) do |f| %>
                 <%= f.hidden_field :post_id, :value => post.id %>
                 <%= button_tag type: 'submit', class: 'page-link bg-danger text-white' do %>
                   <%= inline_svg "downvote.svg", size: '16 * 16' %>

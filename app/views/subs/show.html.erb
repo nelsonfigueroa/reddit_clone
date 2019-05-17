@@ -28,7 +28,9 @@
         <h6 class="card-subtitle mb-2 text-muted">by <%= link_to "#{post.user.username}", user_path(post.user) %> at <%= post.created_at_formatted %></h6>
         <p class="card-text"><%= post.content.truncate(125) %></p>
       </div>
-      <%= render 'layouts/vote_buttons', post: post %>
+      <span id="vote-buttons-<%= post.id %>">
+        <%= render 'layouts/vote_buttons', post: post %>
+      </span>
       <p class="mt-3 ml-3"><%= post.comments.count %> <%= inline_svg "comments.svg", size: "18px*18px" %></p>
     </div>
   <% end %>

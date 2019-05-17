@@ -12,7 +12,9 @@
       <h6 class="card-subtitle mb-2 text-muted">by <%= link_to "#{@post.user.username}", user_path(@post.user) %> at <%= @post.created_at_formatted %></h6>
       <p class="card-text"><%= @post.content %></p>
     </div>
-    <%= render 'layouts/vote_buttons', post: @post %>
+    <span id="vote-buttons-<%= @post.id %>">
+      <%= render 'layouts/vote_buttons', post: @post %>
+    </span>
   </div>
 
   <hr>

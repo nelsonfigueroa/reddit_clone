@@ -19,22 +19,37 @@ class VotesController < ApplicationController
   end
 
   def update
-
     @vote = Vote.find_by_id(params[:id])
 
-    if @vote.update_attributes(vote_params)
-      redirect_back(fallback_location: :back)
-    else
-      flash[:notice] = "Something went wrong..."
-      redirect_back(fallback_location: :back)
+    respond_to do |format|
+      if @vote.update_attributes(vote_params)
+        format.html { redirect_back(fallback_location: :back) }
+        format.json { render json: @vote, status: :created, location: @vote }
+        format.js
+      else
+        format.html { redirect_back(fallback_location: :back, notice: 'Something went wrong') }
+        format.json { render json: @vote.errors, status: :unprocessable_entity }
+        format.js
+      end
     end
+
   end
 
   def destroy
-    puts vote_params
     @vote = Vote.find_by_id(params[:id])
-    @vote.destroy
-    redirect_back(fallback_location: :back)
+
+    respond_to do |format|
+      if @vote.destroy
+        format.html { redirect_back(fallback_location: :back) }
+        format.json { render json: @vote, status: :created, location: @vote }
+        format.js
+      else
+        format.html { redirect_back(fallback_location: :back, notice: 'Something went wrong') }
+        format.json { render json: @vote.errors, status: :unprocessable_entity }
+        format.js
+      end
+    end
+    
   end
 
   private

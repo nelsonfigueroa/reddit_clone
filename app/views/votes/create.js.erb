@@ -1,0 +1,3 @@
+<%# for AJAX purposes %>
+vote = document.getElementById("vote-buttons-<%= @vote.post.id %>")
+vote.innerHTML = "<%= j render('layouts/vote_buttons', post: @vote.post) %>"

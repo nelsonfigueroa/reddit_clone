@@ -40,12 +40,12 @@ class User < ApplicationRecord
 
   # returns posts upvoted by user
   def upvoted_posts
-    Post.joins(:votes).where('votes.user_id' => self.id, 'votes.upvote' => 1, 'votes.downvote' => 0)
+    Post.includes(:sub, :user).joins(:votes).where('votes.user_id' => self.id, 'votes.upvote' => 1, 'votes.downvote' => 0)
   end
 
   # returns posts downvoted by user
   def downvoted_posts
-    Post.joins(:votes).where('votes.user_id' => self.id, 'votes.upvote' => 0, 'votes.downvote' => 1)
+    Post.includes(:sub, :user).joins(:votes).where('votes.user_id' => self.id, 'votes.upvote' => 0, 'votes.downvote' => 1)
   end
 
 end

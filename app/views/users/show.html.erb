@@ -25,4 +25,17 @@
 <% @user.comments.each do |comment| %>
   <%= render 'layouts/comment', comment: comment %>
 <% end %>
+
+<h4>Upvoted Posts</h4>
+<hr>
+<% @user.upvoted_posts.each do |post| %>
+  <p><%= post.title %></p>
+<% end %>
+
+<h4>Downvoted Posts</h4>
+<hr>
+<% @user.downvoted_posts.each do |post| %>
+  <p><%= post.title %></p>
+<% end %>
+
 </div>

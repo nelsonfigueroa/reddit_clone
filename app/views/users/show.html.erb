@@ -1,23 +1,10 @@
 <div class="container">
 <h3 class="mt-4">Viewing user: <%= @user.username %></h3>
+
 <h4>Post History</h4>
 <hr>
 <% @user.posts.each do |post| %>
-  <div class="card mb-3">
-    <div class="card-body">
-      <h5 class="card-title"><%= link_to "#{post.title}", sub_post_path(sub_id: post.sub, id: post), class: 'text-primary' %></h5>
-      <hr>
-      <p class="card-subtitle"><%= post.content.truncate(125) %></p>
-      <small class="card-subtitle text-muted">by <%= link_to "#{post.user.username}", user_path(post.user) %> in <%= link_to "#{post.sub.name}", sub_path(post.sub) %> at <%= post.created_at_formatted %></small>
-      <br>
-      <small class="card-subtitle text-muted"><%= post.comments.count %> <%= inline_svg "comments.svg", size: "16px*16px" %></small>
-    </div>
-
-    <span id="vote-buttons-<%= post.id %>">
-      <%= render 'layouts/vote_buttons', post: post %>
-    </span>
-
-  </div>
+  <%= render 'layouts/post', post: post %>
 <% end %>
 
 <h4>Comment History</h4>

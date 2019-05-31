@@ -1,0 +1,2 @@
+#  rubocop --require rubocop-rails --rails > fix
+require: rubocop-rails

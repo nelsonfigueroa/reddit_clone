@@ -20,7 +20,7 @@
   <hr>
   <% if user_signed_in? %>
     <%= form_with(model: @comment) do |f| %>
-      <div clss="form-group">
+      <div class="form-group">
         <%= f.label :comment, 'Write a comment' %>
         <%= f.text_area :comment, class: 'form-control' %>
       </div>

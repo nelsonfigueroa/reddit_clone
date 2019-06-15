@@ -13,5 +13,4 @@ RSpec.describe Vote, type: :model do
   it "gets all down votes when #downvotes is called" do
     expect(Vote.downvotes).to match_array(Vote.where(upvote: false, downvote: true))
   end
-
 end

@@ -1,5 +1,4 @@
 class PostsController < ApplicationController
-
   def show
     @post = Post.includes(comments: [:user]).find_by_id(params[:id])
 
@@ -7,7 +6,6 @@ class PostsController < ApplicationController
       # for comment form
       @comment = Comment.new
     end
-
   end
 
   def new

@@ -1,5 +1,4 @@
 class SubsController < ApplicationController
-  
   def index
     @subs = Sub.all
   end
@@ -34,5 +33,4 @@ class SubsController < ApplicationController
   def sub_params
     params.require(:sub).permit(:name, :description, :user_id)
   end
-
 end

@@ -8,11 +8,12 @@ class Post < ApplicationRecord
 
   default_scope { order(created_at: :desc) }
 
+  # votes == self.votes
   def net_votes
-    self.votes.where(upvote: true, downvote: false).size - self.votes.where(upvote: false, downvote: true).size
+    votes.where(upvote: true, downvote: false).size - votes.where(upvote: false, downvote: true).size
   end
 
   def created_at_formatted
-    self.created_at.localtime.strftime("%l:%M%p %m/%d/%Y")
+    created_at.localtime.strftime("%l:%M%p %m/%d/%Y")
   end
 end

@@ -14,38 +14,39 @@ class User < ApplicationRecord
 
   validates :email, :username, presence: true, uniqueness: true
 
+  # votes == self.votes
   def has_not_voted?(post)
-    unless self.votes.where(:post_id => post.id, :upvote => true, :downvote => false).exists? || self.votes.where(:post_id => post.id, :upvote => false, :downvote => true).exists?
-      return true
+    unless votes.where(:post_id => post.id, :upvote => true, :downvote => false).exists? || votes.where(:post_id => post.id, :upvote => false, :downvote => true).exists?
+      true
     else
-      return false
+      false
     end
   end
 
   def upvoted_post?(post)
-    if self.votes.where(:post_id => post.id, :upvote => true, :downvote => false).exists?
-      return true
+    if votes.where(:post_id => post.id, :upvote => true, :downvote => false).exists?
+      true
     else
-      return false
+      false
     end
   end
 
   def downvoted_post?(post)
-    if self.votes.where(:post_id => post.id, :upvote => false, :downvote => true).exists?
-      return true
+    if votes.where(:post_id => post.id, :upvote => false, :downvote => true).exists?
+      true
     else
-      return false
+      false
     end 
   end
 
-  # returns posts upvoted by user
+  # returns posts upvoted by user, id == self.id
   def upvoted_posts
-    Post.includes(:sub, :user).joins(:votes).where('votes.user_id' => self.id, 'votes.upvote' => 1, 'votes.downvote' => 0)
+    Post.includes(:sub, :user).joins(:votes).where('votes.user_id' => id, 'votes.upvote' => 1, 'votes.downvote' => 0)
   end
 
-  # returns posts downvoted by user
+  # returns posts downvoted by user, id == self.id
   def downvoted_posts
-    Post.includes(:sub, :user).joins(:votes).where('votes.user_id' => self.id, 'votes.upvote' => 0, 'votes.downvote' => 1)
+    Post.includes(:sub, :user).joins(:votes).where('votes.user_id' => id, 'votes.upvote' => 0, 'votes.downvote' => 1)
   end
 
 end

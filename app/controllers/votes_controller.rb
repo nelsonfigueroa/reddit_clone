@@ -1,5 +1,4 @@
 class VotesController < ApplicationController
-
   def create
     @vote = Vote.new(vote_params)
     @vote.user_id = current_user.id
@@ -15,7 +14,6 @@ class VotesController < ApplicationController
         format.js
       end
     end
-
   end
 
   def update
@@ -32,7 +30,6 @@ class VotesController < ApplicationController
         format.js
       end
     end
-
   end
 
   def destroy
@@ -49,7 +46,6 @@ class VotesController < ApplicationController
         format.js
       end
     end
-    
   end
 
   private

@@ -1,5 +1,4 @@
 class HomeController < ApplicationController
-
   # landing page
   def index
     # get top posts
@@ -8,7 +7,5 @@ class HomeController < ApplicationController
 
   # not RESTful
   def technologies
-    
   end
-
 end

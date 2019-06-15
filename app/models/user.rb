@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -16,15 +18,15 @@ class User < ApplicationRecord
 
   # votes == self.votes
   def has_not_voted?(post)
-    unless votes.where(:post_id => post.id, :upvote => true, :downvote => false).exists? || votes.where(:post_id => post.id, :upvote => false, :downvote => true).exists?
-      true
-    else
+    if votes.where(post_id: post.id, upvote: true, downvote: false).exists? || votes.where(post_id: post.id, upvote: false, downvote: true).exists?
       false
+    else
+      true
     end
   end
 
   def upvoted_post?(post)
-    if votes.where(:post_id => post.id, :upvote => true, :downvote => false).exists?
+    if votes.where(post_id: post.id, upvote: true, downvote: false).exists?
       true
     else
       false
@@ -32,11 +34,11 @@ class User < ApplicationRecord
   end
 
   def downvoted_post?(post)
-    if votes.where(:post_id => post.id, :upvote => false, :downvote => true).exists?
+    if votes.where(post_id: post.id, upvote: false, downvote: true).exists?
       true
     else
       false
-    end 
+    end
   end
 
   # returns posts upvoted by user, id == self.id
@@ -48,5 +50,4 @@ class User < ApplicationRecord
   def downvoted_posts
     Post.includes(:sub, :user).joins(:votes).where('votes.user_id' => id, 'votes.upvote' => 0, 'votes.downvote' => 1)
   end
-
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   root 'home#index'
   get 'home/technologies'
@@ -6,9 +8,9 @@ Rails.application.routes.draw do
   resources :users, only: [:show]
 
   resources :subs do
-    resources :posts, only: [:show, :new, :create]
+    resources :posts, only: %i[show new create]
   end
 
-  resources :votes, only: [:create, :update, :destroy]
+  resources :votes, only: %i[create update destroy]
   resources :comments, only: [:create]
 end

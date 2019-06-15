@@ -1,11 +1,14 @@
+# frozen_string_literal: true
+
 class HomeController < ApplicationController
   # landing page
   def index
     # get top posts
-    @posts = Post.all.includes(:sub, :user).sort_by { |post| post.net_votes }.reverse
+    # previous line...
+    # @posts = Post.all.includes(:sub, :user).sort_by { |post| post.net_votes }.reverse
+    @posts = Post.all.includes(:sub, :user).sort_by(&:net_votes).reverse
   end
 
   # not RESTful
-  def technologies
-  end
+  def technologies; end
 end

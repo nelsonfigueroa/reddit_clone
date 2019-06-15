@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class PostsController < ApplicationController
   def show
-    @post = Post.includes(comments: [:user]).find_by_id(params[:id])
+    @post = Post.includes(comments: [:user]).find_by(id: params[:id])
 
     if user_signed_in?
       # for comment form
@@ -18,14 +20,14 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
-    @sub = Sub.find_by_id(params[:sub_id])
+    @sub = Sub.find_by(id: params[:sub_id])
     @post.user_id = current_user.id
     @post.sub_id = @sub.id
 
     if @post.save
       redirect_to(sub_path(@sub))
     else
-      flash[:notice] = "Invalid input!"
+      flash[:notice] = 'Invalid input!'
       render('new')
     end
   end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class VotesController < ApplicationController
   def create
     @vote = Vote.new(vote_params)
@@ -17,10 +19,10 @@ class VotesController < ApplicationController
   end
 
   def update
-    @vote = Vote.find_by_id(params[:id])
+    @vote = Vote.find_by(id: params[:id])
 
     respond_to do |format|
-      if @vote.update_attributes(vote_params)
+      if @vote.update(vote_params)
         format.html { redirect_back(fallback_location: :back) }
         format.json { render json: @vote, status: :created, location: @vote }
         format.js
@@ -33,7 +35,7 @@ class VotesController < ApplicationController
   end
 
   def destroy
-    @vote = Vote.find_by_id(params[:id])
+    @vote = Vote.find_by(id: params[:id])
 
     respond_to do |format|
       if @vote.destroy

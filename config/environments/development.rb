@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -61,12 +63,12 @@ Rails.application.configure do
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
-  
+
   # Bullet Gem configuration
   config.after_initialize do
     Bullet.enable = true
     Bullet.alert = true
     Bullet.console = true
     Bullet.add_footer = true
-end
+  end
 end

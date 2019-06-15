@@ -1,5 +1,6 @@
-class Sub < ApplicationRecord
+# frozen_string_literal: true
 
+class Sub < ApplicationRecord
   # sub owner
   belongs_to :user
   has_many :posts
@@ -8,5 +9,4 @@ class Sub < ApplicationRecord
   validates :description, presence: true
 
   default_scope { order(name: :asc) }
-
 end

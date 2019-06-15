@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 class SubsController < ApplicationController
   def index
     @subs = Sub.all
   end
 
   def show
-    @sub = Sub.includes(posts: [:user]).find_by_id(params[:id])
+    @sub = Sub.includes(posts: [:user]).find_by(id: params[:id])
   end
 
   def new
@@ -22,7 +24,7 @@ class SubsController < ApplicationController
     if @sub.save
       redirect_to(subs_path)
     else
-      flash[:notice] = "Invalid input!"
+      flash[:notice] = 'Invalid input!'
       render('new')
     end
   end

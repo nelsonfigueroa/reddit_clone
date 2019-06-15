@@ -1,2 +1,3 @@
-#  rubocop --require rubocop-rails --rails > fix
+# rubocop --require rubocop-rails --rails > fix
+# rubocop -a # automatically fix whatever possible
 require: rubocop-rails

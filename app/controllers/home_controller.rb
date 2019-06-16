@@ -9,6 +9,6 @@ class HomeController < ApplicationController
     @posts = Post.all.includes(:sub, :user).sort_by(&:net_votes).reverse
   end
 
-  # not RESTful
+  # technologies used page
   def technologies; end
 end

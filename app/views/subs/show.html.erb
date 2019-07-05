@@ -1,8 +1,8 @@
-<div class="jumbotron jumbotron-fluid bg-dark text-white py-1">
+<div class="jumbotron jumbotron-fluid bg-light py-1">
   <div class="container">
-    <h1 class="display-4"><%= link_to "#{@sub.name}", sub_path(@sub), class: 'text-white' %></h1>
+    <h1 class="display-4"><%= link_to "#{@sub.name}", sub_path(@sub), class: 'text-primary' %></h1>
     <p class="lead"><%= @sub.description %></p>
-    <small class="">Owner: <%= link_to "#{@sub.user.username}", user_path(@sub.user), class:'text-white' %></small>
+    <small>Mods: </small><span class="badge badge-pill badge-primary"><%= link_to "#{@sub.user.username}", user_path(@sub.user), class: 'text-white' %></span>
   </div>
 </div>
 
@@ -25,5 +25,4 @@
     <%= render 'layouts/post', post: post %>
   <% end %>
 <% end %>
-
 </div>

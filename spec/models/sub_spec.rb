@@ -3,7 +3,6 @@
 require 'rails_helper'
 
 RSpec.describe Sub, type: :model do
-  # run before every example
   before(:example) do
     @sub = Sub.new
   end

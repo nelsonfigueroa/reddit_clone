@@ -12,10 +12,20 @@ class Post < ApplicationRecord
 
   # votes == self.votes
   def net_votes
-    votes.where(upvote: true, downvote: false).size - votes.where(upvote: false, downvote: true).size
+    upvotes - downvotes
   end
 
   def created_at_formatted
     created_at.localtime.strftime('%l:%M%p %m/%d/%Y')
+  end
+
+  private
+
+  def upvotes
+    votes.where(upvote: true, downvote: false).size
+  end
+
+  def downvotes
+    votes.where(upvote: false, downvote: true).size
   end
 end

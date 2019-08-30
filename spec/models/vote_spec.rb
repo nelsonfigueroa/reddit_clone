@@ -4,7 +4,33 @@ require 'rails_helper'
 
 RSpec.describe Vote, type: :model do
   it 'validates that user_id and post_id are present' do
-    expect(Vote.new.valid?).to be false
+    vote = Vote.new
+    expect(vote.valid?).to be false
+
+    user = User.create(
+      email: 'test@test.com',
+      password: 'testing123',
+      username: 'test'
+    )
+
+    sub = Sub.create(
+      user: user,
+      name: 'sub name',
+      description: 'sub description'
+    )
+
+    post = Post.create(
+      title: 'post title',
+      content: 'post content',
+      user: user,
+      sub: sub
+    )
+
+    vote.user_id = user.id
+    vote.post_id = post.id
+    vote.save!
+
+    expect(vote.valid?).to be true
   end
 
   it 'gets all up votes when #upvotes is called' do

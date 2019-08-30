@@ -7,7 +7,7 @@ RSpec.describe Sub, type: :model do
   let(:user) { User.new }
   let(:sub) { Sub.new }
 
-  context 'creating a sub' do 
+  context 'creating a sub' do
     it 'returns invalid if attributes are missing' do
       expect(sub.valid?).to be false
     end
@@ -28,9 +28,9 @@ RSpec.describe Sub, type: :model do
 
       sub_two = sub.dup
       sub_two.user = user
-      
+
       # curly braces needed in this case
-      expect{sub_two.save!}.to raise_error(ActiveRecord::RecordInvalid)
+      expect { sub_two.save! }.to raise_error(ActiveRecord::RecordInvalid)
     end
   end
 end

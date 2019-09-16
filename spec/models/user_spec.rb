@@ -3,8 +3,20 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  it 'validates that email and username are present' do
-    expect(User.new.valid?).to be false
+  let(:user) { User.new }
+
+  context 'creating a user' do
+    it 'returns invalid if attributes are missing' do
+      expect(user.valid?).to be false
+    end
+
+    it 'validates that all attributes are present' do
+      user.email = "test@test.com"
+      user.username = "test_username"
+      user.password = "password123!"
+      user.save!
+      expect(user.valid?).to be true
+    end
   end
 
   it 'determines whether the user has voted on a post with #has_not_voted' do

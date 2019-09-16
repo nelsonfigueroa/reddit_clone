@@ -21,6 +21,15 @@ RSpec.describe User, type: :model do
 
   it 'determines whether the user has voted on a post with #has_not_voted' do
     pending('Figuring out the best way to go about this.')
+    # create a post with a vote
+    # (might need to create a user, which creates a sub, which creates a post)
+    # then expect #has_not_voted to be false when using the method on post
+    # then create the vote
+    # then expect the #has_not_voted method to be true
+
+    # refer to vote_spec.rb to create all those objects
+    # consider adding factories as a last thing to this whole project
+    # or maybe keep adding controller tests and view tests
   end
 
   it 'determines whether a user has upvoted a post with #upvoted_post?' do

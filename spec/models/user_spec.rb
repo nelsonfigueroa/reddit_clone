@@ -3,9 +3,9 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  let(:user) { User.new }
+  context 'when creating a user' do
+    let(:user) { User.new }
 
-  context 'creating a user' do
     it 'returns invalid if attributes are missing' do
       expect(user.valid?).to be false
     end

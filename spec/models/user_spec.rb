@@ -11,9 +11,9 @@ RSpec.describe User, type: :model do
     end
 
     it 'validates that all attributes are present' do
-      user.email = "test@test.com"
-      user.username = "test_username"
-      user.password = "password123!"
+      user.email = 'test@test.com'
+      user.username = 'test_username'
+      user.password = 'password123!'
       user.save!
       expect(user.valid?).to be true
     end
@@ -158,7 +158,7 @@ RSpec.describe User, type: :model do
     )
 
     user_upvoted_posts = user.upvoted_posts
-    all_upvoted_posts = Post.joins(:votes).where(:votes => { upvote: 1, downvote: 0} )
+    all_upvoted_posts = Post.joins(:votes).where(votes: { upvote: 1, downvote: 0 })
 
     expect(user_upvoted_posts).to match_array(all_upvoted_posts)
   end
@@ -206,7 +206,7 @@ RSpec.describe User, type: :model do
     )
 
     user_downvoted_posts = user.downvoted_posts
-    all_downvoted_posts = Post.joins(:votes).where(:votes => { upvote: 0, downvote: 1} )
+    all_downvoted_posts = Post.joins(:votes).where(votes: { upvote: 0, downvote: 1 })
 
     expect(user_downvoted_posts).to match_array(all_downvoted_posts)
   end

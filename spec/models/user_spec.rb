@@ -56,11 +56,63 @@ RSpec.describe User, type: :model do
   end
 
   it 'determines whether a user has upvoted a post with #upvoted_post?' do
-    pending('as above')
+    user = User.create(
+      email: 'test@test.com',
+      password: 'testing123',
+      username: 'test'
+    )
+
+    sub = Sub.create(
+      user: user,
+      name: 'sub name',
+      description: 'sub description'
+    )
+
+    post = Post.create(
+      title: 'post title',
+      content: 'post content',
+      user: user,
+      sub: sub
+    )
+
+    vote = Vote.create(
+      user_id: user.id,
+      post_id: post.id,
+      upvote: 1,
+      downvote: 0
+    )
+
+    expect(user.upvoted_post?(post)).to be true
   end
 
   it 'determines whether a user has downvoted a post with #downvoted_post?' do
-    pending('as above')
+    user = User.create(
+      email: 'test@test.com',
+      password: 'testing123',
+      username: 'test'
+    )
+
+    sub = Sub.create(
+      user: user,
+      name: 'sub name',
+      description: 'sub description'
+    )
+
+    post = Post.create(
+      title: 'post title',
+      content: 'post content',
+      user: user,
+      sub: sub
+    )
+
+    vote = Vote.create(
+      user_id: user.id,
+      post_id: post.id,
+      upvote: 0,
+      downvote: 1
+    )
+
+    expect(user.downvoted_post?(post)).to be true
   end
 
   it 'returns posts that were upvoted by user with #upvoted_posts' do

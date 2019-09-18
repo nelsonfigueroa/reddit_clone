@@ -21,15 +21,15 @@ RSpec.describe User, type: :model do
 
   it 'determines whether the user has voted on a post with #has_not_voted' do
     user_one = User.create(
-      email: 'test@test.com',
-      password: 'testing123',
-      username: 'test'
+      email: 'test@one.com',
+      password: 'testing123!',
+      username: 'test_one'
     )
 
     user_two = User.create(
-      email: 'test@test.com',
-      password: 'testing123',
-      username: 'test'
+      email: 'test@two.com',
+      password: 'testing123!',
+      username: 'test_two'
     )
 
     sub = Sub.create(
@@ -53,6 +53,7 @@ RSpec.describe User, type: :model do
     )
 
     expect(user_one.has_not_voted?(post)).to be true
+    expect(user_two.has_not_voted?(post)).to be false
   end
 
   it 'determines whether a user has upvoted a post with #upvoted_post?' do

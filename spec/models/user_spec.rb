@@ -20,6 +20,12 @@ RSpec.describe User, type: :model do
   end
 
   it 'determines whether the user has voted on a post with #has_not_voted' do
+    user_one = User.create(
+      email: 'test@test.com',
+      password: 'testing123',
+      username: 'test'
+    )
+
     user_two = User.create(
       email: 'test@test.com',
       password: 'testing123',
@@ -41,10 +47,12 @@ RSpec.describe User, type: :model do
 
     vote = Vote.create(
       user_id: user_two.id,
-      post_id: post.id
+      post_id: post.id,
+      upvote: 1,
+      downvote: 0
     )
 
-    expect(user_two.has_not_voted?(post)).to be true
+    expect(user_one.has_not_voted?(post)).to be true
   end
 
   it 'determines whether a user has upvoted a post with #upvoted_post?' do

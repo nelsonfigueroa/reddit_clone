@@ -2,7 +2,7 @@
 
 Rails.application.routes.draw do
   root 'home#index'
-  get 'home/technologies'
+  get '/technologies/', to: 'home#technologies'
 
   devise_for :users
   resources :users, only: [:show]

@@ -17,7 +17,7 @@ jobs:
     #     echo test, and deploy your project.
     - name: Set up Rails environment
       run: |
-        sudo su -
+        sudo -s
         apt-get update
         apt-get install software-properties-common -y
         apt-add-repository -y ppa:rael-gc/rvm

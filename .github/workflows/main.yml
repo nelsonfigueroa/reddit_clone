@@ -23,4 +23,5 @@ jobs:
         sudo apt-get update
         sudo apt-get install rvm -y
         exec bash --login
-        rvm install 2.6.3
+        rvm install "ruby-2.6.3"
+        ls -a

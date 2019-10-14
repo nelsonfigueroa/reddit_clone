@@ -1,5 +1,7 @@
 # Reddit Clone
 
+![Github Actions](https://github.com/nelsonfigueroa/reddit_clone/workflows/CI/badge.svg)
+
 My own take on Reddit. Created to showcase my development abilities. Built on Ruby on Rails. A Dockerfile is included to make development and previewing more easy.
 
 To preview yourself using docker:

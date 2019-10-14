@@ -16,10 +16,11 @@ jobs:
     #     echo Add other actions to build,
     #     echo test, and deploy your project.
     - name: Set up Rails environment
-      run: | 
+      run: |
+        sudo su -
         apt-get update
-        apt-get install software-properties-common
+        apt-get install software-properties-common -y
         apt-add-repository -y ppa:rael-gc/rvm
         apt-get update
-        apt-get install rvm
+        apt-get install rvm -y
         rvm install 2.6.3

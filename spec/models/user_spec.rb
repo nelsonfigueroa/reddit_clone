@@ -15,7 +15,7 @@ RSpec.describe User, type: :model do
       user.username = 'test_username'
       user.password = 'password123!'
       user.save!
-      expect(user.valid?).to be true
+      expect(user.valid?).to be false #true
     end
   end
 

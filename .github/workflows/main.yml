@@ -6,26 +6,6 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-    
-    # steps:
-    # - uses: actions/checkout@v1
-    # - name: Run a one-line script
-    #   run: ruby -v
-    # - name: Run a multi-line script
-    #   run: |
-    #     echo Add other actions to build,
-    #     echo test, and deploy your project.
-
-    # - name: Set up Rails environment
-    #   run: |
-    #     sudo apt-get update
-    #     sudo apt-get install software-properties-common -y
-    #     sudo apt-add-repository -y ppa:rael-gc/rvm
-    #     sudo apt-get update
-    #     sudo apt-get install rvm -y
-    #     exec bash --login
-    #     rvm install "ruby-2.6.3"
-    #     ls -a
 
     steps:
     - uses: actions/checkout@v1

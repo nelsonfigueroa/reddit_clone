@@ -35,4 +35,5 @@ jobs:
         ruby-version: 2.6.x
     - name: Test rails app
       run: |
-        ls -a
+        bundle install
+        bundle exec rspec

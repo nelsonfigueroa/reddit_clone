@@ -26,7 +26,8 @@ class Post < ApplicationRecord
     elsif downvotes > 0 && upvotes == 0
       0
     else
-      (upvotes / downvotes) * 100
+      # change to .size
+      ((upvotes.to_f / votes.size.to_f) * 100).to_i
     end
   end
 

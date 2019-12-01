@@ -16,6 +16,7 @@
               <% end %>
             </li>
             <li class="page-item"><span class="page-link text-body" disabled><%= post.net_votes %></span></li>
+            <li class="page-item"><span class="page-link text-body" disabled><%= post.percentage_of_upvotes %>%</span></li>
             <li class="page-item">
               <%= form_with(model: Vote.new) do |f| %>
                 <%= f.hidden_field :post_id, :value => post.id %>
@@ -37,6 +38,7 @@
               <% end %>
             </li>
             <li class="page-item"><span class="page-link text-body" disabled><%= post.net_votes %></span></li>
+            <li class="page-item"><span class="page-link text-body" disabled><%= post.percentage_of_upvotes %>%</span></li>
             <li class="page-item">
               <%= form_with(model: current_user.votes.where(:post_id => post.id, :upvote => true, :downvote => false).first, method: :put) do |f| %>
                 <%= f.hidden_field :post_id, :value => post.id %>
@@ -60,6 +62,7 @@
               <% end %>
             </li>
             <li class="page-item"><span class="page-link text-body" disabled><%= post.net_votes %></span></li>
+            <li class="page-item"><span class="page-link text-body" disabled><%= post.percentage_of_upvotes %>%</span></li>
             <li class="page-item">
               <%= form_with(model: current_user.votes.where(:post_id => post.id, :upvote => false, :downvote => true).first, method: :delete) do |f| %>
                 <%= f.hidden_field :post_id, :value => post.id %>
@@ -73,6 +76,7 @@
         <% else %>
         <li class="page-item"><button type="button" class='page-link' disabled><%= inline_svg "upvote.svg", size: '16 * 16' %></button></li>
         <li class="page-item"><span class="page-link text-body" disabled><%= post.net_votes %></span></li>
+        <li class="page-item"><span class="page-link text-body" disabled><%= post.percentage_of_upvotes %>%</span></li>
         <li class="page-item"><button type="button" class='page-link' disabled><%= inline_svg "downvote.svg", size: '16 * 16' %></button></li>
         <% end %>
       </ul>

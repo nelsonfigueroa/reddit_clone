@@ -19,9 +19,9 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'uglifier', '>= 1.3.0'
 
 group :development, :test do
-  # rspec for testing
+  # rspec + pry for testing
   gem 'pry', '~> 0.12.2'
-  gem 'rspec-rails', '~> 3.8'
+  gem 'rspec-rails'
   # rubocop for best practices
   gem 'rubocop-rails'
 end
@@ -43,4 +43,9 @@ group :test do
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'selenium-webdriver'
   gem 'webdrivers', '~> 4.0'
+
+  gem 'factory_bot_rails'
+  gem 'shoulda-matchers'
+  gem 'faker'
+  # gem 'database_cleaner'
 end

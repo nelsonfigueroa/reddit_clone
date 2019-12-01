@@ -17,8 +17,7 @@ RUN bundle install
 
 COPY . .
 
-RUN rails db:migrate
-RUN rails db:seed
+RUN rails db:setup
 
 EXPOSE 3000
 

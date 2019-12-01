@@ -10,7 +10,7 @@ gem 'devise', '~> 4.7.1'
 gem 'inline_svg'
 gem 'jbuilder', '~> 2.5'
 gem 'puma', '~> 3.11'
-gem 'rails', '~> 5.2.3'
+gem 'rails', '~> 6.0.1'
 gem 'sass-rails', '~> 5.0'
 gem 'sqlite3'
 gem 'turbolinks', '~> 5'
@@ -19,8 +19,6 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'uglifier', '>= 1.3.0'
 
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platforms: %i[mri mingw x64_mingw]
   # rspec for testing
   gem 'pry', '~> 0.12.2'
   gem 'rspec-rails', '~> 3.8'

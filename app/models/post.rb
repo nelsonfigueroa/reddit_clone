@@ -15,6 +15,21 @@ class Post < ApplicationRecord
     upvotes - downvotes
   end
 
+  def percentage_of_upvotes
+    # neutral
+    if downvotes == 0 && upvotes == 0
+      50
+    # only upvotes
+    elsif downvotes == 0 && upvotes > 0
+      100
+    # only downvotes
+    elsif downvotes > 0 && upvotes == 0
+      0
+    else
+      (upvotes / downvotes) * 100
+    end
+  end
+
   def created_at_formatted
     created_at.localtime.strftime('%l:%M%p %m/%d/%Y')
   end

@@ -13,3 +13,17 @@
   </span>
 
 </div>
+
+<div class="card mb-1">
+  <div class="card-body">
+    <h5><%= link_to "#{post.title}", forum_post_path(forum_id: post.forum, id: post), class: 'text-primary' %></h5>
+    <p class="m-0"><%= post.content.truncate(125) %></p>
+    <p class="small text-muted">
+      by <%= link_to "#{post.user.username}", user_path(post.user) %> 
+      in <%= link_to "#{post.forum.name}", forum_path(post.forum) %> 
+      at <%= post.created_at_formatted %>
+      | <%= post.comments.count %> Comments
+      | <%= render 'layouts/vote_buttons', post: post %>
+    </p>
+  </div>
+</div>

@@ -1,2 +1,8 @@
-vote = document.getElementById("vote-buttons-<%= @vote.post.id %>")
-vote.innerHTML = "<%= j render('layouts/vote_buttons', post: @vote.post) %>"
+net_votes = document.getElementById("net-votes-<%= @vote.post.id %>")
+net_votes.innerHTML = <%= @vote.post.net_votes %>
+
+percentage_of_upvotes = document.getElementById("percentage-of-upvotes-<%= @vote.post.id %>")
+percentage_of_upvotes.innerHTML = <%= @vote.post.percentage_of_upvotes %>
+
+vote_buttons = document.getElementById("vote-buttons-<%= @vote.post.id %>")
+vote_buttons.innerHTML = "<%= j render('layouts/vote_buttons', post: @vote.post) %>"

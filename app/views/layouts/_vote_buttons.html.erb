@@ -1,67 +1,46 @@
+<% if user_signed_in? %>
+  <% if current_user.has_not_voted?(post) %>
+    <%= form_with(model: Vote.new) do |f| %>
+      <%= f.hidden_field :post_id, :value => post.id %>
+      <%= f.hidden_field :upvote, :value => true %>
+      <%= f.hidden_field :downvote, :value => false %>
+      <%= f.submit "+", :type => "submit" %>
+    <% end %>
 
-        <% if user_signed_in? %>
+    <%= form_with(model: Vote.new) do |f| %>
+      <%= f.hidden_field :post_id, :value => post.id %>
+      <%= f.hidden_field :upvote, :value => false %>
+      <%= f.hidden_field :downvote, :value => true %>
+      <%= f.submit "-", :type => "submit" %>
+    <% end %>
+  <% elsif current_user.upvoted_post?(post) %>
+    <%= form_with(model: current_user.votes.where(:post_id => post.id, :upvote => true, :downvote => false).first, method: :delete) do |f| %>
+      <%= f.hidden_field :post_id, :value => post.id %>
+      <%= f.submit "+", :type => "submit" %>
+    <% end %>
 
-          <% if current_user.has_not_voted?(post) %>
+    <%= form_with(model: current_user.votes.where(:post_id => post.id, :upvote => true, :downvote => false).first, method: :put) do |f| %>
+      <%= f.hidden_field :post_id, :value => post.id %>
+      <%= f.hidden_field :upvote, :value => false %>
+      <%= f.hidden_field :downvote, :value => true %>
+      <%= f.submit "-", :type => "submit" %>
+    <% end %>
+  <% elsif current_user.downvoted_post?(post) %>
+    <%= form_with(model: current_user.votes.where(:post_id => post.id, :upvote => false, :downvote => true).first, method: :put) do |f| %>
+      <%= f.hidden_field :post_id, :value => post.id %>
+      <%= f.hidden_field :upvote, :value => true %>
+      <%= f.hidden_field :downvote, :value => false %>
+      <%= f.submit "+", :type => "submit" %>
+    <% end %>
 
-            <%= form_with(model: Vote.new) do |f| %>
-              <%= f.hidden_field :post_id, :value => post.id %>
-              <%= f.hidden_field :upvote, :value => true %>
-              <%= f.hidden_field :downvote, :value => false %>
-              <%= f.submit "+", :type => "submit" %>
-            <% end %>
+    <%= form_with(model: current_user.votes.where(:post_id => post.id, :upvote => false, :downvote => true).first, method: :delete) do |f| %>
+      <%= f.hidden_field :post_id, :value => post.id %>
+      <%= f.submit "-", :type => "submit" %>
+    <% end %>
+  <% end %>
 
-            <%= post.net_votes %> points
-            <%= post.percentage_of_upvotes %>%
-
-            <%= form_with(model: Vote.new) do |f| %>
-              <%= f.hidden_field :post_id, :value => post.id %>
-              <%= f.hidden_field :upvote, :value => false %>
-              <%= f.hidden_field :downvote, :value => true %>
-              <%= f.submit "-", :type => "submit" %>
-            <% end %>
-
-            
-          <% elsif current_user.upvoted_post?(post) %>
-
-            <%= form_with(model: current_user.votes.where(:post_id => post.id, :upvote => true, :downvote => false).first, method: :delete) do |f| %>
-              <%= f.hidden_field :post_id, :value => post.id %>
-              <%= f.submit "+", :type => "submit" %>
-            <% end %>
-
-            <%= post.net_votes %> points
-            <%= post.percentage_of_upvotes %>%
-
-            <%= form_with(model: current_user.votes.where(:post_id => post.id, :upvote => true, :downvote => false).first, method: :put) do |f| %>
-              <%= f.hidden_field :post_id, :value => post.id %>
-              <%= f.hidden_field :upvote, :value => false %>
-              <%= f.hidden_field :downvote, :value => true %>
-              <%= f.submit "-", :type => "submit" %>
-            <% end %>
-
-
-          <% elsif current_user.downvoted_post?(post) %>
-
-            <%= form_with(model: current_user.votes.where(:post_id => post.id, :upvote => false, :downvote => true).first, method: :put) do |f| %>
-              <%= f.hidden_field :post_id, :value => post.id %>
-              <%= f.hidden_field :upvote, :value => true %>
-              <%= f.hidden_field :downvote, :value => false %>
-              <%= f.submit "+", :type => "submit" %>
-            <% end %>
-
-            <%= post.net_votes %> points
-            <%= post.percentage_of_upvotes %>%
-
-            <%= form_with(model: current_user.votes.where(:post_id => post.id, :upvote => false, :downvote => true).first, method: :delete) do |f| %>
-              <%= f.hidden_field :post_id, :value => post.id %>
-              <%= f.submit "-", :type => "submit" %>
-            <% end %>
-
-          <% end %>
-
-        <% else %>
-          <%= link_to "+", new_user_session_path, :class => '' %>
-          <%= link_to "-", new_user_session_path, :class => '' %>
-          <%= post.net_votes %> points
-          <%= post.percentage_of_upvotes %>%
-        <% end %>
+<% else %>
+  <%= link_to "+", new_user_session_path, :class => '' %>
+  <%= link_to "-", new_user_session_path, :class => '' %>
+<% end %>
 

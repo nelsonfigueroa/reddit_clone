@@ -5,9 +5,12 @@
     <p class="small text-muted">
       by <%= link_to "#{post.user.username}", user_path(post.user) %> 
       in <%= link_to "#{post.forum.name}", forum_path(post.forum) %> 
-      at <%= post.created_at_formatted %>
+      | <%= post.created_at_formatted %>
       | <%= post.comments.count %> Comments
-      | <span id="vote-buttons-<%= post.id %>"><%= render 'layouts/vote_buttons', post: post %></span>
+      | <span id=net-votes-<%= post.id %>><%= post.net_votes %></span> points (<span id="percentage-of-upvotes-<%= post.id %>"><%= post.percentage_of_upvotes %></span>%)
     </p>
+    <span id="vote-buttons-<%= post.id %>">
+      <%= render 'layouts/vote_buttons', post: post %>
+    </span>
   </div>
 </div>

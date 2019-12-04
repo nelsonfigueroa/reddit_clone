@@ -1,17 +1,18 @@
+<div class="form-inline">
 <% if user_signed_in? %>
   <% if current_user.has_not_voted?(post) %>
     <%= form_with(model: Vote.new) do |f| %>
       <%= f.hidden_field :post_id, :value => post.id %>
       <%= f.hidden_field :upvote, :value => true %>
       <%= f.hidden_field :downvote, :value => false %>
-      <%= f.submit "+", :type => "submit" %>
+      <%= f.submit "+", :type => "submit", :class => "" %>
     <% end %>
 
     <%= form_with(model: Vote.new) do |f| %>
       <%= f.hidden_field :post_id, :value => post.id %>
       <%= f.hidden_field :upvote, :value => false %>
       <%= f.hidden_field :downvote, :value => true %>
-      <%= f.submit "-", :type => "submit" %>
+      <%= f.submit "-", :type => "submit", :class => "" %>
     <% end %>
   <% elsif current_user.upvoted_post?(post) %>
     <%= form_with(model: current_user.votes.where(:post_id => post.id, :upvote => true, :downvote => false).first, method: :delete) do |f| %>
@@ -43,4 +44,5 @@
   <%= link_to "+", new_user_session_path, :class => '' %>
   <%= link_to "-", new_user_session_path, :class => '' %>
 <% end %>
+</div>
 

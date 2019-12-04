@@ -20,12 +20,12 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
-    @sub = Sub.find_by(id: params[:sub_id])
+    @forum = Forum.find_by(id: params[:forum_id])
     @post.user_id = current_user.id
-    @post.sub_id = @sub.id
+    @post.forum_id = @forum.id
 
     if @post.save
-      redirect_to(sub_path(@sub))
+      redirect_to(forum_path(@forum))
     else
       flash[:notice] = 'Invalid input!'
       render('new')
@@ -33,6 +33,6 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:title, :content, :user_id, :sub_id)
+    params.require(:post).permit(:title, :content, :user_id, :forum_id)
   end
 end

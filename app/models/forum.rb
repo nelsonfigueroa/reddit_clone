@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-class Sub < ApplicationRecord
-  # sub owner
+class Forum < ApplicationRecord
+  # forum owner
   belongs_to :user
   has_many :posts, dependent: :destroy
 

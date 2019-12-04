@@ -1,0 +1,32 @@
+<div class="container">
+
+  <h1 class="mt-4">Browse Forums</h1>
+  <% if user_signed_in? %>
+    <%= link_to 'Create Forum', new_forum_path, :class => 'btn btn-primary' %>
+  <% else %>
+    <button type="button" class="btn btn-primary" disabled>Log in to create a forum</button>
+  <% end %>
+
+  <% unless @forums.empty? %>
+    <table class="table table-bordered table-striped table-hover">
+      <thead class="thead-dark">
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @forums.each do |forum| %>
+          <p></p>
+          <tr>
+            <td><h4><%= link_to "#{forum.name}", forum_path(forum) %></h4></td>
+            <td><%= forum.description %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <br>
+    <p>No forums exist, be the first to create one!</p>
+  <% end %>
+</div>

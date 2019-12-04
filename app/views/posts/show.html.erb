@@ -1,7 +1,7 @@
 <div class="jumbotron jumbotron-fluid bg-dark text-white py-1">
   <div class="container">
-    <h1 class="display-4"><%= link_to "#{@post.sub.name}", sub_path(@post.sub), class: 'text-white' %></h1>
-    <p class="lead"><%= @post.sub.description %></p>
+    <h1 class="display-4"><%= link_to "#{@post.forum.name}", forum_path(@post.forum), class: 'text-white' %></h1>
+    <p class="lead"><%= @post.forum.description %></p>
   </div>
 </div>
 

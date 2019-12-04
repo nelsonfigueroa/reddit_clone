@@ -1,14 +1,14 @@
 require 'faker'
 
-sub_owner = User.create(
+forum_owner = User.create(
   email: Faker::Internet.unique.email, 
   username: Faker::Internet.unique.user_name,
   password: Faker::Internet.password
 )
 
 3.times do
-  Sub.create(
-    user: sub_owner,
+  Forum.create(
+    user: forum_owner,
     name: Faker::Company.unique.name,
     description: Faker::Commerce.unique.department
   )
@@ -20,12 +20,12 @@ post_owner = User.create(
   password: Faker::Internet.password
 )
 
-# for each sub, create 3 posts
-Sub.all.each do |sub|
+# for each forum, create 3 posts
+Forum.all.each do |forum|
   3.times do
     Post.create(
       user: post_owner,
-      sub: sub,
+      forum: forum,
       title: Faker::Lorem.unique.word,
       content: Faker::Lorem.paragraph(sentence_count: 4)
     )

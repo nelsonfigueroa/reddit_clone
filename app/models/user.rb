@@ -6,7 +6,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :trackable, :validatable
 
-  has_many :subs
+  has_many :forums
   has_many :posts
   has_many :comments
   has_many :votes
@@ -43,14 +43,14 @@ class User < ApplicationRecord
 
   # returns posts upvoted by user, id == self.id
   def upvoted_posts
-    Post.includes(:sub, :user)
+    Post.includes(:forum, :user)
         .joins(:votes)
         .where('votes.user_id' => id, 'votes.upvote' => 1, 'votes.downvote' => 0)
   end
 
   # returns posts downvoted by user, id == self.id
   def downvoted_posts
-    Post.includes(:sub, :user)
+    Post.includes(:forum, :user)
         .joins(:votes)
         .where('votes.user_id' => id, 'votes.upvote' => 0, 'votes.downvote' => 1)
   end

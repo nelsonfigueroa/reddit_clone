@@ -1,0 +1,28 @@
+<div class="jumbotron jumbotron-fluid bg-light py-1">
+  <div class="container">
+    <h1 class="display-4"><%= link_to "#{@forum.name}", forum_path(@forum), class: 'text-primary' %></h1>
+    <p class="lead"><%= @forum.description %></p>
+    <small>Mods: </small><span class="badge badge-pill badge-primary"><%= link_to "#{@forum.user.username}", user_path(@forum.user), class: 'text-white' %></span>
+  </div>
+</div>
+
+<div class="container">
+<% if user_signed_in? && current_user.id == @forum.user_id %>
+  <p>You are the sub owner! You will have admin actions in the future :)</p>
+<% end %>
+
+<% if user_signed_in? %>
+  <%= link_to 'New Post', new_forum_post_path(@forum), class: 'btn btn-primary' %>
+<% else %>
+  <button type="button" class="btn btn-primary" disabled>Log in to create a post</button>
+<% end %>
+<br><br>
+
+<% if @forum.posts.empty? %>
+  <p>There are no posts! Be the first to create one!</p>
+<% else %>
+  <% @forum.posts.each do |post| %>
+    <%= render 'layouts/post', post: post %>
+  <% end %>
+<% end %>
+</div>

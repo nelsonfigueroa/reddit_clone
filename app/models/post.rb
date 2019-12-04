@@ -2,7 +2,7 @@
 
 class Post < ApplicationRecord
   belongs_to :user
-  belongs_to :sub
+  belongs_to :forum
   has_many :comments
   has_many :votes
 

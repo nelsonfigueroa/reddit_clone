@@ -1,12 +1,12 @@
 <div class="container">
-  <h1 class="mt-4">Create a new sub</h1>
-  <%= form_for @sub, html: {class: "nifty_form"} do |f| %>
+  <h1 class="mt-4">Create a new forum</h1>
+  <%= form_for @forum, html: {class: "nifty_form"} do |f| %>
     <div class="form-group">
-    <%= f.label :name, 'Sub Name' %>
+    <%= f.label :name, 'Forum Name' %>
     <%= f.text_field :name, class: 'form-control' %>
     </div>
     <div class="form-group">
-    <%= f.label :description, 'What\'s your sub about?' %>
+    <%= f.label :description, 'What\'s your forum about?' %>
     <%= f.text_field :description, class: 'form-control' %>
     </div>
     <%= f.submit "Create", class: 'btn btn-primary' %>

@@ -1,6 +1,6 @@
 <div class="container">
   <h1 class="mt-4">Create a post</h1>
-  <%= form_for [:sub, @post], html: {class: "nifty_form"} do |f| %>
+  <%= form_for [:forum, @post], html: {class: "nifty_form"} do |f| %>
     <div class="form-group">
       <%= f.label :title, 'Title of your post' %>
       <%= f.text_field :title, class: 'form-control' %>

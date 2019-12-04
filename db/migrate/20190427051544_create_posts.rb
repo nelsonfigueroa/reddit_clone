@@ -6,7 +6,7 @@ class CreatePosts < ActiveRecord::Migration[5.2]
       t.string :title
       t.text :content
       t.references :user, index: true, foreign_key: true
-      t.references :sub, index: true, foreign_key: true
+      t.references :forum, index: true, foreign_key: true
       t.timestamps
     end
   end

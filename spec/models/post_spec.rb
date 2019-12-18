@@ -6,7 +6,7 @@ require 'pry'
 RSpec.describe Post, type: :model do
   let(:post) { Post.new }
   let(:user) { User.new }
-  let(:sub) { Sub.new }
+  let(:forum) { Forum.new }
 
   context 'creating a post' do
     it 'returns invalid if attributes are missing' do
@@ -14,10 +14,10 @@ RSpec.describe Post, type: :model do
     end
 
     it 'validates that all attributes are present' do
-      post.title = 'Title'
-      post.content = 'Content'
+      post.title = Faker::String.random
+      post.content = Faker::String.random
       post.user = user
-      post.sub = sub
+      post.forum = forum
       post.save!
       expect(post.valid?).to be true
     end
@@ -31,10 +31,10 @@ RSpec.describe Post, type: :model do
 
   context 'when calling #created_at_formatted' do
     it 'returns a string of the date when calling #created_at_formatted' do
-      post.title = 'Title'
-      post.content = 'Content'
+      post.title = Faker::String.random
+      post.content = Faker::String.random
       post.user = user
-      post.sub = sub
+      post.forum = forum
       post.save!
       expect(post.created_at_formatted).to be_a(String)
     end

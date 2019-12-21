@@ -45,7 +45,7 @@ group :test do
   gem 'webdrivers', '~> 4.0'
 
   gem 'factory_bot_rails'
-  gem 'shoulda-matchers'
   gem 'faker'
+  gem 'shoulda-matchers'
   # gem 'database_cleaner'
 end

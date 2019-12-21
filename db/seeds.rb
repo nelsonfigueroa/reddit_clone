@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 require 'faker'
 
 forum_owner = User.create(
-  email: Faker::Internet.unique.email, 
+  email: Faker::Internet.unique.email,
   username: Faker::Internet.unique.user_name,
   password: Faker::Internet.password
 )
@@ -15,7 +17,7 @@ forum_owner = User.create(
 end
 
 post_owner = User.create(
-  email: Faker::Internet.unique.email, 
+  email: Faker::Internet.unique.email,
   username: Faker::Internet.unique.user_name,
   password: Faker::Internet.password
 )
@@ -33,7 +35,7 @@ Forum.all.each do |forum|
 end
 
 commenter = User.create(
-  email: Faker::Internet.unique.email, 
+  email: Faker::Internet.unique.email,
   username: Faker::Internet.unique.user_name,
   password: Faker::Internet.password
 )
@@ -51,19 +53,19 @@ end
 
 # users to be upvoters/downvoters
 voter_1 = User.create(
-  email: Faker::Internet.unique.email, 
+  email: Faker::Internet.unique.email,
   username: Faker::Internet.unique.user_name,
   password: Faker::Internet.password
 )
 
 voter_2 = User.create(
-  email: Faker::Internet.unique.email, 
+  email: Faker::Internet.unique.email,
   username: Faker::Internet.unique.user_name,
   password: Faker::Internet.password
 )
 
 voter_3 = User.create(
-  email: Faker::Internet.unique.email, 
+  email: Faker::Internet.unique.email,
   username: Faker::Internet.unique.user_name,
   password: Faker::Internet.password
 )
@@ -94,5 +96,3 @@ Post.all.each do |post|
     end
   end
 end
-
-

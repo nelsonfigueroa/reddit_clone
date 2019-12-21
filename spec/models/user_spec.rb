@@ -20,18 +20,22 @@ RSpec.describe User, type: :model do
   end
 
   context 'when voting as a user' do
-    let(:user) { User.create(email: Faker::Internet.unique.email, 
-                          password: Faker::Internet.unique.password, 
-                          username: Faker::Internet.unique.username) }
-    let(:user_two) { User.create(email: Faker::Internet.unique.email, 
-                          password: Faker::Internet.unique.password, 
-                          username: Faker::Internet.unique.username) }
+    let(:user) do
+      User.create(email: Faker::Internet.unique.email,
+                  password: Faker::Internet.unique.password,
+                  username: Faker::Internet.unique.username)
+    end
+    let(:user_two) do
+      User.create(email: Faker::Internet.unique.email,
+                  password: Faker::Internet.unique.password,
+                  username: Faker::Internet.unique.username)
+    end
 
     it 'determines whether the user has voted on a post with #has_not_voted' do
       forum = Forum.create(
         user: user_two,
         name: Faker::String.random,
-        description: Faker::String.random,
+        description: Faker::String.random
       )
 
       post = Post.create(

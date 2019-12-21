@@ -9,7 +9,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'devise', '~> 4.7.1'
 gem 'inline_svg'
 gem 'jbuilder', '~> 2.5'
-gem 'puma', '~> 3.11'
+gem 'puma', '~> 3.12'
 gem 'rails', '~> 6.0.1'
 gem 'sass-rails', '~> 5.0'
 gem 'sqlite3'

@@ -11,9 +11,9 @@ RSpec.describe User, type: :model do
     end
 
     it 'validates that all attributes are present' do
-      user.email = 'test@test.com'
-      user.username = 'test_username'
-      user.password = 'password123!'
+      user.email = Faker::Internet.email
+      user.username = Faker::Internet.username
+      user.password = Faker::Internet.password
       user.save!
       expect(user.valid?).to be true
     end
@@ -22,28 +22,28 @@ RSpec.describe User, type: :model do
   context 'when voting as a user' do
     it 'determines whether the user has voted on a post with #has_not_voted' do
       user_one = User.create(
-        email: 'test@one.com',
-        password: 'testing123!',
-        username: 'test_one'
+        email: Faker::Internet.unique.email,
+        password: Faker::Internet.unique.password,
+        username: Faker::Internet.unique.username
       )
 
       user_two = User.create(
-        email: 'test@two.com',
-        password: 'testing123!',
-        username: 'test_two'
+        email: Faker::Internet.unique.email,
+        password: Faker::Internet.unique.password,
+        username: Faker::Internet.unique.username
       )
 
-      sub = Sub.create(
+      forum = Forum.create(
         user: user_two,
-        name: 'sub name',
-        description: 'sub description'
+        name: Faker::String.random,
+        description: Faker::String.random,
       )
 
       post = Post.create(
-        title: 'post title',
-        content: 'post content',
+        title: Faker::String.random,
+        content: Faker::String.random,
         user: user_two,
-        sub: sub
+        forum: forum
       )
 
       vote = Vote.create(
@@ -59,22 +59,22 @@ RSpec.describe User, type: :model do
 
     it 'determines whether a user has upvoted a post with #upvoted_post?' do
       user = User.create(
-        email: 'test@test.com',
-        password: 'testing123',
-        username: 'test'
+        email: Faker::Internet.email,
+        password: Faker::Internet.password,
+        username: Faker::Internet.username
       )
 
-      sub = Sub.create(
+      forum = Forum.create(
         user: user,
-        name: 'sub name',
-        description: 'sub description'
+        name: Faker::String.random,
+        description: Faker::String.random
       )
 
       post = Post.create(
-        title: 'post title',
-        content: 'post content',
+        title: Faker::String.random,
+        content: Faker::String.random,
         user: user,
-        sub: sub
+        forum: forum
       )
 
       vote = Vote.create(

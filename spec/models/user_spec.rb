@@ -20,19 +20,14 @@ RSpec.describe User, type: :model do
   end
 
   context 'when voting as a user' do
+    let(:user) { User.create(email: Faker::Internet.unique.email, 
+                          password: Faker::Internet.unique.password, 
+                          username: Faker::Internet.unique.username) }
+    let(:user_two) { User.create(email: Faker::Internet.unique.email, 
+                          password: Faker::Internet.unique.password, 
+                          username: Faker::Internet.unique.username) }
+
     it 'determines whether the user has voted on a post with #has_not_voted' do
-      user_one = User.create(
-        email: Faker::Internet.unique.email,
-        password: Faker::Internet.unique.password,
-        username: Faker::Internet.unique.username
-      )
-
-      user_two = User.create(
-        email: Faker::Internet.unique.email,
-        password: Faker::Internet.unique.password,
-        username: Faker::Internet.unique.username
-      )
-
       forum = Forum.create(
         user: user_two,
         name: Faker::String.random,
@@ -53,17 +48,11 @@ RSpec.describe User, type: :model do
         downvote: 0
       )
 
-      expect(user_one.has_not_voted?(post)).to be true
+      expect(user.has_not_voted?(post)).to be true
       expect(user_two.has_not_voted?(post)).to be false
     end
 
     it 'determines whether a user has upvoted a post with #upvoted_post?' do
-      user = User.create(
-        email: Faker::Internet.email,
-        password: Faker::Internet.password,
-        username: Faker::Internet.username
-      )
-
       forum = Forum.create(
         user: user,
         name: Faker::String.random,
@@ -88,23 +77,17 @@ RSpec.describe User, type: :model do
     end
 
     it 'determines whether a user has downvoted a post with #downvoted_post?' do
-      user = User.create(
-        email: 'test@test.com',
-        password: 'testing123',
-        username: 'test'
-      )
-
-      sub = Sub.create(
+      forum = Forum.create(
         user: user,
-        name: 'sub name',
-        description: 'sub description'
+        name: Faker::String.random,
+        description: Faker::String.random
       )
 
       post = Post.create(
-        title: 'post title',
-        content: 'post content',
+        title: Faker::String.random,
+        content: Faker::String.random,
         user: user,
-        sub: sub
+        forum: forum
       )
 
       vote = Vote.create(
@@ -118,23 +101,17 @@ RSpec.describe User, type: :model do
     end
 
     it 'returns posts that were upvoted by user with #upvoted_posts' do
-      user = User.create(
-        email: 'test@test.com',
-        password: 'testing123',
-        username: 'test'
-      )
-
-      sub = Sub.create(
+      forum = Forum.create(
         user: user,
-        name: 'sub name',
-        description: 'sub description'
+        name: Faker::String.random,
+        description: Faker::String.random
       )
 
       post = Post.create(
-        title: 'post title',
-        content: 'post content',
+        title: Faker::String.random,
+        content: Faker::String.random,
         user: user,
-        sub: sub
+        forum: forum
       )
 
       vote = Vote.create(
@@ -145,10 +122,10 @@ RSpec.describe User, type: :model do
       )
 
       post_two = Post.create(
-        title: 'post title',
-        content: 'post content',
+        title: Faker::String.random,
+        content: Faker::String.random,
         user: user,
-        sub: sub
+        forum: forum
       )
 
       # downvoted post this time
@@ -166,23 +143,17 @@ RSpec.describe User, type: :model do
     end
 
     it 'returns posts that were downvoted by a user with #downvoted_posts' do
-      user = User.create(
-        email: 'test@test.com',
-        password: 'testing123',
-        username: 'test'
-      )
-
-      sub = Sub.create(
+      forum = Forum.create(
         user: user,
-        name: 'sub name',
-        description: 'sub description'
+        name: Faker::String.random,
+        description: Faker::String.random
       )
 
       post = Post.create(
-        title: 'post title',
-        content: 'post content',
+        title: Faker::String.random,
+        content: Faker::String.random,
         user: user,
-        sub: sub
+        forum: forum
       )
 
       vote = Vote.create(
@@ -193,10 +164,10 @@ RSpec.describe User, type: :model do
       )
 
       post_two = Post.create(
-        title: 'post title',
-        content: 'post content',
+        title: Faker::String.random,
+        content: Faker::String.random,
         user: user,
-        sub: sub
+        forum: forum
       )
 
       # upvoted post this time

@@ -13,17 +13,17 @@ RSpec.describe Vote, type: :model do
       username: 'test'
     )
 
-    sub = Sub.create(
+    forum = Forum.create(
       user: user,
-      name: 'sub name',
-      description: 'sub description'
+      name: Faker::String.random,
+      description: Faker::String.random
     )
 
     post = Post.create(
       title: 'post title',
       content: 'post content',
       user: user,
-      sub: sub
+      forum: forum
     )
 
     vote.user_id = user.id

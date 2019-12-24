@@ -1,9 +1,10 @@
 version: "3.7"
 services:
-  container_name: forum
-  ruby_app:
+  ruby-app:
+    image: 'ruby-app'
+    container_name: forum
     build:
-        context: .
-        dockerfile: Dockerfile
+      context: .
+      dockerfile: Dockerfile
     ports:
-        - "3000:3000"
+      - "3000:3000"

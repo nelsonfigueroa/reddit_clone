@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: forum-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: forum
+  template:
+    metadata:
+      labels:
+        app: forum
+    spec:
+      containers:
+      - name: forum
+        image: nfigueroa/forum
+        ports:
+        - containerPort: 3000

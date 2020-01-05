@@ -1,7 +1,7 @@
 version: "3.7"
 services:
   ruby-app:
-    image: 'ruby-app'
+    image: 'forum'
     container_name: forum
     build:
       context: .

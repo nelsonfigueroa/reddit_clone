@@ -2,18 +2,16 @@
 
 A Ruby on Rails application inspired by Reddit. Created to showcase my development abilities. A Dockerfile is included to make development and previewing more easy.
 
-To preview yourself using docker:
+You can preview the application by pulling the pre-built image from DockerHub and running it:
 
-Build the image
-
-```sh
-docker build . -t forum
+```
+docker run -p 3000:3000 nfigueroa/forum
 ```
 
-Then run the image specifying port 3000
+Or if you want to build and run the application yourself:
 
-```sh
-docker run -p 3000:3000 forum
+```
+docker-compose up
 ```
 
 Then browse to `localhost:3000` in your browser.

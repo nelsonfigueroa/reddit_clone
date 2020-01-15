@@ -3,6 +3,12 @@
 require 'rails_helper'
 
 RSpec.describe Vote, type: :model do
+
+  describe 'associations' do
+    it { should belong_to(:user) }
+    it { should belong_to(:post) }
+  end
+
   it 'validates that user_id and post_id are present' do
     vote = Vote.new
     expect(vote.valid?).to be false

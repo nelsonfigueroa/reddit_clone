@@ -3,6 +3,14 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
+
+  describe 'associations' do
+    it { should have_many(:forums) }
+    it { should have_many(:posts) }
+    it { should have_many(:comments) }
+    it { should have_many(:votes) }
+  end
+
   context 'when creating a user' do
     let(:user) { User.new }
 

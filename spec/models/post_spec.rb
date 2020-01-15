@@ -4,6 +4,14 @@ require 'rails_helper'
 require 'pry'
 
 RSpec.describe Post, type: :model do
+
+  describe 'associations' do
+    it { should belong_to(:user) }
+    it { should belong_to(:forum) }
+    it { should have_many(:comments) }
+    it { should have_many(:votes) }
+  end
+
   let(:post) { Post.new }
   let(:user) { User.new }
   let(:forum) { Forum.new }

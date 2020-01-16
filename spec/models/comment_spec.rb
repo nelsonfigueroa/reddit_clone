@@ -9,7 +9,11 @@ RSpec.describe Comment, type: :model do
     it { should belong_to(:post) }
   end
 
-  it 'validates that a comment is present' do
-    expect(Comment.new.valid?).to be false
+  describe 'validations' do
+  	it { should validate_presence_of(:comment) }
   end
+
+  # it 'validates that a comment is present' do
+  #   expect(Comment.new.valid?).to be false
+  # end
 end

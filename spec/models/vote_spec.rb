@@ -9,35 +9,44 @@ RSpec.describe Vote, type: :model do
     it { should belong_to(:post) }
   end
 
-  it 'validates that user_id and post_id are present' do
-    vote = Vote.new
-    expect(vote.valid?).to be false
+  describe 'validations' do
+    it { should validate_presence_of(:user_id) }
+    it { should validate_presence_of(:post_id) }
 
-    user = User.create(
-      email: 'test@test.com',
-      password: 'testing123',
-      username: 'test'
-    )
-
-    forum = Forum.create(
-      user: user,
-      name: Faker::String.random,
-      description: Faker::String.random
-    )
-
-    post = Post.create(
-      title: 'post title',
-      content: 'post content',
-      user: user,
-      forum: forum
-    )
-
-    vote.user_id = user.id
-    vote.post_id = post.id
-    vote.save!
-
-    expect(vote.valid?).to be true
+    # buggy? might need to manually create record(s)
+    # https://github.com/thoughtbot/shoulda-matchers/issues/745
+    # it { should validate_uniqueness_of(:user_id).scoped_to(:post_id) }
   end
+
+  # it 'validates that user_id and post_id are present' do
+  #   vote = Vote.new
+  #   expect(vote.valid?).to be false
+
+  #   user = User.create(
+  #     email: 'test@test.com',
+  #     password: 'testing123',
+  #     username: 'test'
+  #   )
+
+  #   forum = Forum.create(
+  #     user: user,
+  #     name: Faker::String.random,
+  #     description: Faker::String.random
+  #   )
+
+  #   post = Post.create(
+  #     title: 'post title',
+  #     content: 'post content',
+  #     user: user,
+  #     forum: forum
+  #   )
+
+  #   vote.user_id = user.id
+  #   vote.post_id = post.id
+  #   vote.save!
+
+  #   expect(vote.valid?).to be true
+  # end
 
   it 'gets all up votes when #upvotes is called' do
     expect(Vote.upvotes).to match_array(Vote.where(upvote: true, downvote: false))

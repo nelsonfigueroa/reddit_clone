@@ -12,24 +12,29 @@ RSpec.describe Post, type: :model do
     it { should have_many(:votes) }
   end
 
+  describe 'validations' do
+    it { should validate_presence_of(:title) }
+    it { should validate_presence_of(:content) }
+  end
+
   let(:post) { Post.new }
   let(:user) { User.new }
   let(:forum) { Forum.new }
 
-  context 'creating a post' do
-    it 'returns invalid if attributes are missing' do
-      expect(post.valid?).to be false
-    end
+  # context 'creating a post' do
+  #   it 'returns invalid if attributes are missing' do
+  #     expect(post.valid?).to be false
+  #   end
 
-    it 'validates that all attributes are present' do
-      post.title = Faker::String.random
-      post.content = Faker::String.random
-      post.user = user
-      post.forum = forum
-      post.save!
-      expect(post.valid?).to be true
-    end
-  end
+  #   it 'validates that all attributes are present' do
+  #     post.title = Faker::String.random
+  #     post.content = Faker::String.random
+  #     post.user = user
+  #     post.forum = forum
+  #     post.save!
+  #     expect(post.valid?).to be true
+  #   end
+  # end
 
   context 'when calling #net_votes' do
     it 'returns an integer' do

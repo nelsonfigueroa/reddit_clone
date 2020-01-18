@@ -19,22 +19,6 @@ RSpec.describe User, type: :model do
     it { should validate_uniqueness_of(:username) }
   end
 
-  # context 'when creating a user' do
-  #   let(:user) { User.new }
-
-  #   it 'returns invalid if attributes are missing' do
-  #     expect(user.valid?).to be false
-  #   end
-
-  #   it 'validates that all attributes are present' do
-  #     user.email = Faker::Internet.email
-  #     user.username = Faker::Internet.username
-  #     user.password = Faker::Internet.password
-  #     user.save!
-  #     expect(user.valid?).to be true
-  #   end
-  # end
-
   context 'when voting as a user' do
     let(:user) do
       User.create(email: Faker::Internet.unique.email,
